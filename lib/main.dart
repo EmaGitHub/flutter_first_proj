@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'Flutter App',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -22,13 +23,13 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Home Page'), //OrangeContainer(text: 'Lesson 10')
+      home: HomePage(title: 'Home Page'), //OrangeContainer(text: 'Lesson 10')
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class HomePage extends StatefulWidget {
+  HomePage({Key key, this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -45,7 +46,7 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<HomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -113,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             RaisedButton(
               child: Text(
-                'Open route',
+                'Layout settings',
                 style: TextStyle(fontSize: 20),
               ),
               onPressed: () {
@@ -128,11 +129,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   side: BorderSide(color: Colors.black26, width: 4),
                   borderRadius: BorderRadius.circular(10)),
             ),
-            /*  Row(
-              
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                
                 FloatingActionButton(
+                  heroTag: "btn1",
                   tooltip: 'Decrement',
                   child: Icon(Icons.remove),
                   elevation: 20,
@@ -142,6 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                 ),
                 FloatingActionButton(
+                  heroTag: "btn2",
                   tooltip: 'Increment',
                   child: Icon(Icons.add),
                   elevation: 20,
@@ -151,7 +153,23 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                 )
               ],
-            ) */
+            ),
+            RaisedButton(
+              child: Text(
+                'Stack Widget',
+                style: TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyPage()),
+                );
+              },
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              shape: RoundedRectangleBorder(
+                  side: BorderSide(color: Colors.black26, width: 4),
+                  borderRadius: BorderRadius.circular(10)),
+            ),
           ],
         ),
       ),
@@ -159,6 +177,77 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+class MyPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Stack'),
+      ),
+      body: SingleChildScrollView(
+          child: Column(
+        children: <Widget>[
+          //we will add our widgets here.
+          Container(
+              width: double.infinity,
+              margin: EdgeInsets.only(top: 10),
+              child: Stack(
+                alignment: Alignment.centerRight,
+                children: <Widget>[
+                  // Max Size
+                  Container(
+                    color: Colors.orange,
+                    height: 300,
+                    width: 300,
+                  ),
+                  Positioned(
+                      right: 80.0,
+                      child: Container(
+                          color: Colors.yellowAccent,
+                          height: 200.0,
+                          width: 200.0)),
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                        color: Colors.greenAccent,
+                        height: 100.0,
+                        width: 100.0,
+                      )),
+                ],
+              )),
+          Container(
+            margin: EdgeInsets.only(top: 20),
+              child: _buildStack('assets/images/avatar_circle.png', 'Username')
+          )
+        ],
+      )),
+    );
+  }
+}
+
+Widget _buildStack(pic, name) => Stack(
+    alignment: const Alignment(0, 0.7),
+    children: [
+      CircleAvatar(
+        backgroundImage: AssetImage(pic),
+        radius: 100,
+      ),
+      Container(
+        decoration: BoxDecoration(
+          color: Colors.black45,
+        ),
+        child: Text(
+          name,
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+      ),
+    ],
+  );
 
 class OrangeContainer extends StatelessWidget {
   const OrangeContainer({Key key, this.text}) : super(key: key);
