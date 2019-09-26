@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';         //Attraverso questa libreria, Flutter dispone di tutte le funzionalità, colori e widget, noti come material component
+import 'package:flutter/material.dart'; //Attraverso questa libreria, Flutter dispone di tutte le funzionalità, colori e widget, noti come material component
+import 'dart:math'; //LIbreria per funzioni matematiche
 
-void main() => runApp(MyApp());       //Una volta eseguito, il compilatore creerà un’istanza della classe MyApp e la passerà alla funzione runApp che eseguirà l’applicazione
+void main() => runApp(
+    MyApp()); //Una volta eseguito, il compilatore creerà un’istanza della classe MyApp e la passerà alla funzione runApp che eseguirà l’applicazione
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Home Page'),
+      home: MyHomePage(title: 'Home Page'), //OrangeContainer(text: 'Lesson 10')
     );
   }
 }
@@ -53,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter--;
+      _counter++;
     });
   }
 
@@ -109,17 +111,198 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.display1,
             ),
+            RaisedButton(
+              child: Text(
+                'Open route',
+                style: TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => OrangeContainer(text: 'Detail')),
+                );
+              },
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              shape: RoundedRectangleBorder(
+                  side: BorderSide(color: Colors.black26, width: 4),
+                  borderRadius: BorderRadius.circular(10)),
+            ),
+            /*  Row(
+              
+              children: <Widget>[
+                
+                FloatingActionButton(
+                  tooltip: 'Decrement',
+                  child: Icon(Icons.remove),
+                  elevation: 20,
+                  onPressed: () {
+                    print('Clicked');
+                    _decrementCounter();
+                  },
+                ),
+                FloatingActionButton(
+                  tooltip: 'Increment',
+                  child: Icon(Icons.add),
+                  elevation: 20,
+                  onPressed: () {
+                    print('Clicked');
+                    _incrementCounter();
+                  },
+                )
+              ],
+            ) */
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        tooltip: 'Increment',
-        child: Icon(Icons.plus_one),
-        elevation: 20,
-        onPressed: () { print('Clicked');
-                        _incrementCounter(); },
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-      
+      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+}
+
+class OrangeContainer extends StatelessWidget {
+  const OrangeContainer({Key key, this.text}) : super(key: key);
+  final String text;
+
+  static const _PATH = "assets/images";
+  static const _PIC01 = "$_PATH/apps.png";
+  static const _PIC02 = "$_PATH/logged_user.png";
+  static const _GIF01 = "assets/gifs/FlappingFlagTheory.gif";
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+        appBar: new AppBar(
+          title: new Text(this.text),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                  margin:
+                      EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 0),
+                  child: Text(
+                    "Definition of a TextStyle with basic parameters",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontFamily: 'FFF_Tusj',
+                        fontSize: 25,
+                        color: Colors.lightBlue[700],
+                        shadows: [
+                          /* Shadow(
+                            color: Colors.black,
+                            offset: Offset(1, 3),
+                            blurRadius: 2), */
+                          /* Shadow(
+                            color: Colors.cyan,
+                            offset: Offset(3, 1),
+                            blurRadius: 2) */
+                        ]),
+                  )),
+              Container(
+                constraints: BoxConstraints.expand(height: 300),
+                alignment: Alignment.center,
+                child: Image(
+                  image: AssetImage(_GIF01),
+                  fit: BoxFit.cover,
+                  height: 200,
+                  width: 300,
+                ),
+              ),
+              Container(
+                width: 300.0,
+                height: 50.0,
+                color: Colors.teal,
+                alignment: Alignment.center,
+                child: Text("Container width = 300 , height = 50"),
+              ),
+              Container(
+                constraints: BoxConstraints.expand(height: 300),
+                alignment: Alignment.center,
+                child: Image.asset(
+                  _PIC01,
+                  fit: BoxFit.cover,
+                  color: Colors.purple,
+                  colorBlendMode: BlendMode.colorDodge,
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.all(20),
+                color: Colors.orange,
+                child: Text(
+                    "\nBasic Container\nBasic Container\nBasic Container\nBasic Container\nBasic Container\nBasic Container\nBasic Container\nBasic Container\n"),
+              ),
+              Container(
+                color: Colors.yellow,
+                margin: EdgeInsets.only(
+                    left: 40.0, right: 40.0, top: 10, bottom: 10),
+                padding: EdgeInsets.only(
+                    left: 20.0, right: 20.0, top: 20, bottom: 20),
+                child: Container(
+                  color: Colors.orangeAccent[200],
+                  child: Text("Container with margin and padding"),
+                ),
+              ),
+              Container(
+                constraints: BoxConstraints.expand(height: 100.0, width: 200),
+                padding: EdgeInsets.all(10),
+                margin: EdgeInsets.all(20),
+                decoration: ShapeDecoration(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(20.0),
+                      ),
+                    ),
+                    color: Colors.red),
+                child: Text("Container with ShapeDecoration"),
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 10),
+                margin: EdgeInsets.only(left: 20, right: 20),
+                constraints: BoxConstraints.expand(height: 200),
+                alignment: Alignment.centerLeft,
+                color: Colors.lightGreenAccent[700],
+                transform: Matrix4.rotationY(pi / 5)..rotateX(pi / 5),
+                child: Text("Transform"),
+              ),
+              Container(
+                constraints: BoxConstraints.expand(height: 50),
+                margin: EdgeInsets.only(bottom: 15),
+                child: Image.asset(
+                  _PIC02,
+                  repeat: ImageRepeat.repeatX,
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ],
+          ),
+        ));
+  }
+}
+
+class Author {
+  String name;
+  String surname;
+  var articles = [];
+
+  //. . .
+  Author(this.name, this.surname);
+
+  // . . .
+  @override
+  String toString() => 'Author: $name $surname';
+
+  // . . .
+  void addArticle(String article) {
+    articles.add(article);
+  }
+
+  // . . .
+  void showArticles() {
+    articles.forEach((article) => print(article));
+  }
+
+  // . . .
+  countArticles() => articles.length;
 }
