@@ -126,7 +126,6 @@ class _MyHomePageState extends State<HomePage> {
                   borderRadius: BorderRadius.circular(10)),
             ),
             Container(
-
               margin: EdgeInsets.only(top: 40),
               child: RaisedButton(
                 child: Text(
