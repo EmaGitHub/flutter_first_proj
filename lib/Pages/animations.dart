@@ -3,6 +3,7 @@ import 'package:first_proj/Objects/fade_in.dart';
 import 'package:flutter/material.dart';
 
 class AnimationsPage extends StatefulWidget {
+  
   @override
   _AnimationsPageState createState() => new _AnimationsPageState();
 }

@@ -1,7 +1,8 @@
 import 'package:first_proj/Pages/animations.dart';
 import 'package:first_proj/Pages/layoutset.dart';
+import 'package:first_proj/Pages/request.dart';
 import 'package:first_proj/Pages/stackwidget.dart';
-import 'package:first_proj/widgets/homescreen.dart';
+import 'package:first_proj/Pages/homescreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart'; //Attraverso questa libreria, Flutter dispone di tutte le funzionalità, colori e widget, noti come material component
 
@@ -62,6 +63,15 @@ class _MyHomePageState extends State<HomePage> {
          
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+
+            RaisedButton(
+              child: Text('Request PAGE'),
+              onPressed: () {
+                    Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => RequestPage()));
+                  }
+            ),
+
             Text(
               'You have pushed the button this many times:',
             ),
@@ -105,7 +115,6 @@ class _MyHomePageState extends State<HomePage> {
                   child: Icon(Icons.add),
                   elevation: 20,
                   onPressed: () {
-                    print('Clicked');
                     _incrementCounter();
                   },
                 )
