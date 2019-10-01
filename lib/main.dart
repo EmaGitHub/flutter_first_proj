@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-              primarySwatch: Colors.blue,
+        primarySwatch: Colors.blue,
       ),
       home: HomePage(title: 'Home Page'), //OrangeContainer(text: 'Lesson 10')
     );
@@ -37,64 +37,46 @@ class _MyHomePageState extends State<HomePage> {
 
   void _incrementCounter() {
     setState(() {
-
       _counter++;
     });
   }
 
   void _decrementCounter() {
     setState(() {
-     
       _counter--;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
-        
         title: Text(widget.title),
       ),
       body: Center(
-       
         child: Column(
-         
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-
             RaisedButton(
-              child: Text('Request PAGE'),
+              child: Text(
+                'HTTP Request PAGE',
+                style: TextStyle(fontSize: 20),
+              ),
               onPressed: () {
-                    Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => RequestPage()));
-                  }
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => RequestPage()));
+              },
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              shape: RoundedRectangleBorder(
+                  side: BorderSide(color: Colors.black26, width: 4),
+                  borderRadius: BorderRadius.circular(10)),
             ),
-
             Text(
               'You have pushed the button this many times:',
             ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.display1,
-            ),
-            RaisedButton(
-              child: Text(
-                'Layout settings',
-                style: TextStyle(fontSize: 20),
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => LayoutSet(text: 'Detail')),
-                );
-              },
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-              shape: RoundedRectangleBorder(
-                  side: BorderSide(color: Colors.black26, width: 4),
-                  borderRadius: BorderRadius.circular(10)),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -122,13 +104,14 @@ class _MyHomePageState extends State<HomePage> {
             ),
             RaisedButton(
               child: Text(
-                'Stack Widget',
+                'Layout settings',
                 style: TextStyle(fontSize: 20),
               ),
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => StackWidget()),
+                  MaterialPageRoute(
+                      builder: (context) => LayoutSet(text: 'Detail')),
                 );
               },
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -137,7 +120,26 @@ class _MyHomePageState extends State<HomePage> {
                   borderRadius: BorderRadius.circular(10)),
             ),
             Container(
-              margin: EdgeInsets.only(top: 40),
+              margin: EdgeInsets.only(top: 20),
+              child: RaisedButton(
+                child: Text(
+                  'Stack Widget',
+                  style: TextStyle(fontSize: 20),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => StackWidget()),
+                  );
+                },
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                shape: RoundedRectangleBorder(
+                    side: BorderSide(color: Colors.black26, width: 4),
+                    borderRadius: BorderRadius.circular(10)),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 20),
               child: RaisedButton(
                 child: Text(
                   'Animations',
