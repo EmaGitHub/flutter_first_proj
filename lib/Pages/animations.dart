@@ -1,4 +1,5 @@
-import 'package:first_proj/Objects/string.dart';
+import 'package:first_proj/Objects/CardPlaceholder.dart';
+import 'package:first_proj/Objects/fade_in.dart';
 import 'package:flutter/material.dart';
 
 class AnimationsPage extends StatefulWidget {
@@ -30,10 +31,9 @@ class _AnimationsPageState extends State<AnimationsPage>
     ).animate(
       CurvedAnimation(
         parent: boxController,
-        //curve: Curves.ease,
         curve: Interval(
           0.0,
-          0.2,
+          0.3,
           curve: Curves.ease,
         ),
       ),
@@ -45,14 +45,14 @@ class _AnimationsPageState extends State<AnimationsPage>
     ).animate(CurvedAnimation(
       parent: boxController,
       curve: Interval(
-        0.2,
+        0.1,
         0.3,
         curve: Curves.ease,
       ),
     ));
 
     widthAnimation = Tween<double>(
-      begin: 30,
+      begin: 10,
       end: 300,
     ).animate(
       CurvedAnimation(
@@ -66,7 +66,7 @@ class _AnimationsPageState extends State<AnimationsPage>
     );
 
     heightAnimation = Tween<double>(
-      begin: 35,
+      begin: 10,
       end: 350,
     ).animate(
       CurvedAnimation(
@@ -102,9 +102,6 @@ class _AnimationsPageState extends State<AnimationsPage>
     super.dispose();
   }
 
-  // This function is called each time the controller "ticks" a new frame.
-  // When it runs, all of the animation's values will have been
-  // updated to reflect the controller's current value.
   Widget _buildAnimation(BuildContext context, Widget child) {
     return Scaffold(
         appBar: AppBar(
@@ -119,9 +116,9 @@ class _AnimationsPageState extends State<AnimationsPage>
                 opacity: opacityAnimation.value,
                 child: Container(
                   margin: EdgeInsets.only(top: 30),
+                  padding: EdgeInsets.only(top: 10, left: 10, right: 10),
                   width: widthAnimation.value,
                   height: heightAnimation.value,
-                  padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: colorAnimation.value,
                     border: Border.all(color: Colors.blueAccent),
@@ -129,7 +126,8 @@ class _AnimationsPageState extends State<AnimationsPage>
                   ),
                   child: ListView(
                     children: <Widget>[
-                      for(int i = 0; i<8; i++)  StringObj(text: 'test', delay: 2000 + i*100 )
+
+                      for(int i = 1; i<5; i++)  FadeIn(i*0.5+4,  CardPlaceholder()),
                     ],
                   ),
                 )),

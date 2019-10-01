@@ -1,6 +1,8 @@
 import 'package:first_proj/Pages/animations.dart';
 import 'package:first_proj/Pages/layoutset.dart';
 import 'package:first_proj/Pages/stackwidget.dart';
+import 'package:first_proj/widgets/homescreen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart'; //Attraverso questa libreria, Flutter dispone di tutte le funzionalità, colori e widget, noti come material component
 
 void main() => runApp(
@@ -135,7 +137,26 @@ class _MyHomePageState extends State<HomePage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => AnimationsPage()),
+                    CupertinoPageRoute(builder: (context) => AnimationsPage()),
+                  );
+                },
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                shape: RoundedRectangleBorder(
+                    side: BorderSide(color: Colors.black26, width: 4),
+                    borderRadius: BorderRadius.circular(10)),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 40),
+              child: RaisedButton(
+                child: Text(
+                  'Animations Examples Demo',
+                  style: TextStyle(fontSize: 20),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    CupertinoPageRoute(builder: (context) => Homescreen()),
                   );
                 },
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
