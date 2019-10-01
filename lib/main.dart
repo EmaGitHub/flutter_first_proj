@@ -1,5 +1,6 @@
 import 'package:first_proj/Pages/animations.dart';
 import 'package:first_proj/Pages/layoutset.dart';
+import 'package:first_proj/Pages/list.dart';
 import 'package:first_proj/Pages/request.dart';
 import 'package:first_proj/Pages/stackwidget.dart';
 import 'package:first_proj/Pages/homescreen.dart';
@@ -149,6 +150,25 @@ class _MyHomePageState extends State<HomePage> {
                   Navigator.push(
                     context,
                     CupertinoPageRoute(builder: (context) => AnimationsPage()),
+                  );
+                },
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                shape: RoundedRectangleBorder(
+                    side: BorderSide(color: Colors.black26, width: 4),
+                    borderRadius: BorderRadius.circular(10)),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 40),
+              child: RaisedButton(
+                child: Text(
+                  'List View',
+                  style: TextStyle(fontSize: 20),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    CupertinoPageRoute(builder: (context) => ListPage()),
                   );
                 },
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),

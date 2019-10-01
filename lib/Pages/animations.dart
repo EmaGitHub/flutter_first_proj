@@ -1,16 +1,16 @@
 import 'package:first_proj/Objects/CardPlaceholder.dart';
 import 'package:first_proj/Objects/fade_in.dart';
+import 'package:first_proj/Objects/string.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class AnimationsPage extends StatefulWidget {
-  
   @override
   _AnimationsPageState createState() => new _AnimationsPageState();
 }
 
 class _AnimationsPageState extends State<AnimationsPage>
     with SingleTickerProviderStateMixin {
-
   AnimationController boxController;
 
   bool _visible = true;
@@ -80,10 +80,8 @@ class _AnimationsPageState extends State<AnimationsPage>
       ),
     );
 
-    colorAnimation = ColorTween(
-      begin: Colors.blueAccent,
-      end: Colors.white
-    ).animate(CurvedAnimation(
+    colorAnimation = ColorTween(begin: Colors.blueAccent, end: Colors.white)
+        .animate(CurvedAnimation(
       parent: boxController,
       curve: Interval(
         0.7,
@@ -127,8 +125,8 @@ class _AnimationsPageState extends State<AnimationsPage>
                   ),
                   child: ListView(
                     children: <Widget>[
-
-                      for(int i = 1; i<5; i++)  FadeIn(i*0.5+4,  CardPlaceholder()),
+                      for (int i = 1; i < 5; i++)
+                        FadeIn(i*0.5+4,  CardPlaceholder()),
                     ],
                   ),
                 )),
@@ -154,7 +152,7 @@ class _AnimationsPageState extends State<AnimationsPage>
   }
 
   animate() {
-     if (this._visible) {
+    if (this._visible) {
       this.boxController.reverse();
     } else {
       this.boxController.forward();
