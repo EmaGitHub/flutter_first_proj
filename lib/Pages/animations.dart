@@ -126,7 +126,8 @@ class _AnimationsPageState extends State<AnimationsPage>
                   child: ListView(
                     children: <Widget>[
                       for (int i = 1; i < 5; i++)
-                        FadeIn(i*0.5+4,  CardPlaceholder()),
+                         FadeIn(i*0.5+4,  CardPlaceholder()),     
+                         //StringObj(text: 'test',delay: 2000+i*100)
                     ],
                   ),
                 )),

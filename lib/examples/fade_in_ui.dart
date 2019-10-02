@@ -10,12 +10,21 @@ class FadeInUi extends StatelessWidget {
         padding: EdgeInsets.all(20.0),
         child: Column(
           children: <Widget>[
-            
+            FadeIn(1.0, HeaderPlaceholder()),
             WhitespaceSeparator(),
-            FadeIn(1, CardPlaceholder()),
-            FadeIn(1.5, CardPlaceholder()),
-            FadeIn(2, CardPlaceholder()),
-            FadeIn(2.5, CardPlaceholder())
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                FadeIn(2, CirclePlaceholder()),
+                FadeIn(2.33, CirclePlaceholder()),
+                FadeIn(2.66, CirclePlaceholder())
+              ],
+            ),
+            WhitespaceSeparator(),
+            FadeIn(4, CardPlaceholder()),
+            FadeIn(4.5, CardPlaceholder()),
+            FadeIn(5, CardPlaceholder()),
+            FadeIn(5.5, CardPlaceholder())
           ],
         ),
       ),

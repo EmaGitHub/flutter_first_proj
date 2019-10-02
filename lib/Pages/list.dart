@@ -22,64 +22,62 @@ class _ListPageState extends State<ListPage> {
       appBar: AppBar(
         title: Text('List View'),
       ),
-      body: SingleChildScrollView(
-        child: Center(
-            child:
-
-                /* AnimationLimiter(
-            child: ListView.builder(
-              itemCount: 50,
-              itemBuilder: (BuildContext context, int index) {
-                return AnimationConfiguration.staggeredList(
-                  position: index,
-                  duration: const Duration(milliseconds: 500),
-                  child: SlideAnimation(
-                    verticalOffset: 50.0,
-                    child: FlipAnimation(
-                      child: Text('test'),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ), */
-                AnimationLimiter(
-            child: Column(
-              children: AnimationConfiguration.toStaggeredList(
-                  duration: const Duration(milliseconds: 800),
-                  childAnimationBuilder: (widget) => SlideAnimation(
-                        horizontalOffset: 200.0,
-                        child: FadeInAnimation(
-                          child: widget,
-                        ),
+      body: 
+            /* AnimationLimiter(
+              child: ListView.builder(
+                itemCount: 50,
+                itemBuilder: (BuildContext context, int index) {
+                  return AnimationConfiguration.staggeredList(
+                    position: index,
+                    duration: const Duration(milliseconds: 500),
+                    child: SlideAnimation(
+                      verticalOffset: 50.0,
+                      child: FlipAnimation(
+                        child: Text('test'),
                       ),
-                  children: <Widget>[
-                    for (int i = 1; i < 8; i++) CardPlaceholder()
-                  ]),
+                    ),
+                  );
+                },
+              ),
+            ), */
+            /* SingleChildScrollView(
+              child:  AnimationLimiter(
+                child: Column(
+                  children: AnimationConfiguration.toStaggeredList(
+                      duration: const Duration(milliseconds: 800),
+                      childAnimationBuilder: (widget) => SlideAnimation(
+                            horizontalOffset: 200.0,
+                            child: FadeInAnimation(
+                              child: widget,
+                            ),
+                          ),
+                      children: <Widget>[
+                        for (int i = 1; i < 20; i++) CardPlaceholder()
+                      ]),
+                ),
+              ),
+            ) */
+          AnimationLimiter(
+            child: GridView.count(
+              crossAxisCount: columnCount,
+              children: List.generate(
+                50,
+                (int index) {
+                  return AnimationConfiguration.staggeredGrid(
+                    position: index,
+                    duration: const Duration(milliseconds: 800),
+                    columnCount: columnCount,
+                    child: ScaleAnimation(
+                      child: FadeInAnimation(
+                        child: CardPlaceholder(),
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
           )
-                /* AnimationLimiter(
-          child: GridView.count(
-            crossAxisCount: columnCount,
-            children: List.generate(
-              100,
-              (int index) {
-                return AnimationConfiguration.staggeredGrid(
-                  position: index,
-                  duration: const Duration(milliseconds: 375),
-                  columnCount: columnCount,
-                  child: ScaleAnimation(
-                    child: FadeInAnimation(
-                      child: CardPlaceholder(),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-        ) */
-        ),
-      ),
+
     );
   }
 }
