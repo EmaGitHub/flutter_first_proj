@@ -1,7 +1,3 @@
-import 'dart:convert';
-
-import 'package:first_proj/Objects/CardPlaceholder.dart';
-import 'package:first_proj/Objects/fade_in.dart';
 import 'package:first_proj/Objects/listObj.dart';
 import 'package:flutter/material.dart';
 
@@ -27,14 +23,14 @@ class _AnimationsPageState extends State<AnimationsPage>
   initState() {
     super.initState();
 
-    new Future<String>.delayed(new Duration(milliseconds: 1400)).then((String value) {
+    new Future<String>.delayed(new Duration(milliseconds: 2000)).then((String value) {
       setState(() {
         listWidget = ListObj();
       });
     });
 
     boxController = AnimationController(
-        duration: const Duration(milliseconds: 2000), vsync: this);
+        duration: const Duration(milliseconds: 1900), vsync: this);
 
     opacityAnimation = Tween<double>(
       begin: 0.0,
@@ -64,7 +60,7 @@ class _AnimationsPageState extends State<AnimationsPage>
 
     widthAnimation = Tween<double>(
       begin: 10,
-      end: 300,
+      end: 330,
     ).animate(
       CurvedAnimation(
         parent: boxController,
@@ -78,7 +74,7 @@ class _AnimationsPageState extends State<AnimationsPage>
 
     heightAnimation = Tween<double>(
       begin: 10,
-      end: 350,
+      end: 400,
     ).animate(
       CurvedAnimation(
         parent: boxController,
@@ -116,6 +112,7 @@ class _AnimationsPageState extends State<AnimationsPage>
         appBar: AppBar(
           title: Text('Animations'),
         ),
+        backgroundColor: Colors.white,
         body: Center(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -124,13 +121,14 @@ class _AnimationsPageState extends State<AnimationsPage>
             Opacity(
                 opacity: opacityAnimation.value,
                 child: Container(
-                  margin: EdgeInsets.only(top: 30),
-                  padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+                  padding: EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
                   width: widthAnimation.value,
                   height: heightAnimation.value,
                   decoration: BoxDecoration(
                     color: colorAnimation.value,
-                    border: Border.all(color: Colors.blueAccent),
+                    border: Border.all(
+                      color: Colors.blueAccent, 
+                      width: 2),
                     borderRadius: borderRadiusAnimation.value,
                   ),
                   child: 

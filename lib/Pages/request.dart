@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart'; //Attraverso questa libreria, Flutter dispone di tutte le funzionalità, colori e widget, noti come material component
 import 'package:http/http.dart' as http;
-import 'dart:async';
 import 'dart:convert'; //it allows us to convert our json to a list
 
 import 'package:connectivity/connectivity.dart';

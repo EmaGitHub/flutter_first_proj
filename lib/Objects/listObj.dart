@@ -8,8 +8,6 @@ class ListObj extends StatefulWidget {
 }
 
 class _ListObjState extends State<ListObj> {
-  List data = [];
-  static int columnCount = 3;
 
   @override
   initState() {
@@ -19,26 +17,27 @@ class _ListObjState extends State<ListObj> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body:
-
-            SingleChildScrollView(                                                       //list sliding x
-              child:  AnimationLimiter(
-                child: Column(
-                  children: AnimationConfiguration.toStaggeredList(
-                      duration: const Duration(milliseconds: 1000),
-                      childAnimationBuilder: (widget) => SlideAnimation(
-                            horizontalOffset: 200.0,
-                            child: FadeInAnimation(
-                              child: widget,
-                            ),
-                          ),
-                      children: <Widget>[
-                        for (int i = 1; i < 20; i++) CardPlaceholder()
-                      ]),
+        SingleChildScrollView(                                                       
+          child:  AnimationLimiter(
+            child: Column(
+              children: AnimationConfiguration.toStaggeredList(
+                  duration: const Duration(milliseconds: 1000),
+                  childAnimationBuilder: (widget) => 
+                    SlideAnimation(
+                        horizontalOffset: 200.0,
+                        child: FadeInAnimation(
+                          child: widget,
+                        ),
+                      ),
+                  children: <Widget>[
+                    for (int i = 1; i < 15; i++) CardPlaceholder()
+                  ]
                 ),
-              ),
-            )
-  
+            ),
+          ),
+        )
     );
   }
 }

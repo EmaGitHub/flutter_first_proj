@@ -10,7 +10,6 @@ class ParticleBackgroundApp extends StatelessWidget {
     return Stack(children: <Widget>[
       Positioned.fill(child: AnimatedBackground()),
       Positioned.fill(child: Particles(30)),
-      Positioned.fill(child: CenteredText()),
     ]);
   }
 }
@@ -136,22 +135,6 @@ class AnimatedBackground extends StatelessWidget {
         );
       },
     );
-  }
-}
-
-class CenteredText extends StatelessWidget {
-  const CenteredText({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-        child: Text(
-      "Welcome",
-      style: TextStyle(color: Colors.white, fontWeight: FontWeight.w200),
-      textScaleFactor: 4,
-    ));
   }
 }
 

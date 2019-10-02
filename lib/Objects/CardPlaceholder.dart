@@ -10,6 +10,12 @@ class CardPlaceholder extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: Card(
+        shape: new RoundedRectangleBorder(
+          side: new BorderSide(
+            color: Colors.black, 
+            width: 1.0),
+          borderRadius: BorderRadius.circular(10.0)
+        ),
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Row(

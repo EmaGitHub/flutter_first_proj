@@ -133,7 +133,7 @@ class CenteredText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Text(
-      "Hello!",
+      "User",
       style: TextStyle(color: Colors.white),
       textScaleFactor: 5,
     ));
