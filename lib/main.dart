@@ -90,6 +90,7 @@ class _MyHomePageState extends State<HomePage> {
               ),
             ),
             ListTile(
+              leading: new Icon(Icons.airline_seat_legroom_normal),
               title: Text('Animations Page'),
               onTap: () {
                 Navigator.pop(context);
@@ -98,6 +99,7 @@ class _MyHomePageState extends State<HomePage> {
               },
             ),
             ListTile(
+              leading: new Icon(Icons.cloud_done),
               title: Text('Stack widget Page'),
               onTap: () {
                 Navigator.of(context).pop();
@@ -178,7 +180,7 @@ class _MyHomePageState extends State<HomePage> {
               margin: EdgeInsets.only(top: 20),
               child: RaisedButton(
                 child: Text(
-                  'Stack Widget',
+                  'Stack Widget & Navbar',
                   style: TextStyle(fontSize: 20),
                 ),
                 onPressed: () {
