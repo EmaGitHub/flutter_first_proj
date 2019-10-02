@@ -25,7 +25,7 @@ class _ListObjState extends State<ListObj> {
               child:  AnimationLimiter(
                 child: Column(
                   children: AnimationConfiguration.toStaggeredList(
-                      duration: const Duration(milliseconds: 800),
+                      duration: const Duration(milliseconds: 1000),
                       childAnimationBuilder: (widget) => SlideAnimation(
                             horizontalOffset: 200.0,
                             child: FadeInAnimation(

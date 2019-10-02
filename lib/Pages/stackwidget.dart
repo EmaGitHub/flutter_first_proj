@@ -44,9 +44,11 @@ getNavigationView() {
           title: Text('Stack'),
         ),
         body: SingleChildScrollView(
-            child: Center(
+          child: Center(
           child: 
             Container(
+                alignment: Alignment.topCenter,
+                margin: EdgeInsets.only(top: 20),
                 height: 500,
                 child: getNavigationView()
                 ),
@@ -79,7 +81,7 @@ Widget _buildUser(pic, name) => Stack(
       children: [
         CircleAvatar(
           backgroundImage: AssetImage(pic),
-          radius: 100,
+          radius: 150,
         ),
         Container(
           decoration: BoxDecoration(

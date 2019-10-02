@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:first_proj/Objects/CardPlaceholder.dart';
 import 'package:first_proj/Objects/fade_in.dart';
+import 'package:first_proj/Objects/listObj.dart';
 import 'package:flutter/material.dart';
 
 class AnimationsPage extends StatefulWidget {
@@ -19,8 +22,17 @@ class _AnimationsPageState extends State<AnimationsPage>
   Animation<BorderRadius> borderRadiusAnimation;
   Animation<Color> colorAnimation;
 
+  Widget listWidget;
+
   initState() {
     super.initState();
+
+    new Future<String>.delayed(new Duration(milliseconds: 1400)).then((String value) {
+      setState(() {
+        listWidget = ListObj();
+      });
+    });
+
     boxController = AnimationController(
         duration: const Duration(milliseconds: 2000), vsync: this);
 
@@ -121,13 +133,10 @@ class _AnimationsPageState extends State<AnimationsPage>
                     border: Border.all(color: Colors.blueAccent),
                     borderRadius: borderRadiusAnimation.value,
                   ),
-                  child: ListView(
-                    children: <Widget>[
-                      for (int i = 1; i < 5; i++)
-                         FadeIn(i*0.5+4,  CardPlaceholder()),     
-                         //StringObj(text: 'test',delay: 2000+i*100)
-                    ],
-                  ),
+                  child: 
+                    
+                    listWidget
+                    
                 )),
             FloatingActionButton(
               heroTag: "btn",
