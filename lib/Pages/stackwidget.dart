@@ -1,3 +1,4 @@
+import 'package:first_proj/Objects/listObj.dart';
 import 'package:flutter/material.dart'; //Attraverso questa libreria, Flutter dispone di tutte le funzionalità, colori e widget, noti come material component
 
 class StackWidget extends StatefulWidget {
@@ -29,7 +30,7 @@ getNavigationView() {
       return _buildUser('assets/images/avatar_circle.png', user.name);
     case 1:
 
-      return _buildList();
+      return ListObj();
     case 2:
 
     return _buildStack();
@@ -46,10 +47,11 @@ getNavigationView() {
             child: Center(
           child: 
             Container(
-                margin: EdgeInsets.only(top: 20),
+                height: 500,
                 child: getNavigationView()
                 ),
-        )),
+            )
+        ),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
@@ -117,38 +119,6 @@ Widget _buildStack() => Stack(
             )),
       ],
     );
-
-Widget _buildList() => Container(
-        child: Column(
-      children: <Widget>[
-        ListTile(
-          leading: Icon(Icons.map),
-          title: Text('Map'),
-        ),
-        ListTile(
-          leading: Icon(Icons.photo_album),
-          title: Text('Album'),
-        ),
-        ListTile(
-          leading: Icon(Icons.phone),
-          title: Text('Phone'),
-        ),
-        Text('Test'),
-        ListTile(
-          leading: Icon(Icons.map),
-          title: Text('Map'),
-        ),
-        ListTile(
-          leading: Icon(Icons.photo_album),
-          title: Text('Album'),
-        ),
-        ListTile(
-          leading: Icon(Icons.phone),
-          title: Text('Phone'),
-        ),
-      ],
-    )
-        );
 
 class User {
   String name;

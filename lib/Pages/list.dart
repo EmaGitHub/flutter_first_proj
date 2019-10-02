@@ -22,7 +22,13 @@ class _ListPageState extends State<ListPage> {
       appBar: AppBar(
         title: Text('List View'),
       ),
-      body: 
+      body:
+
+         /*  RaisedButton(
+            child: Text('show list'),
+              onPressed: 
+                showList(),
+                ), */
             /* AnimationLimiter(                                                          //List vertical offset
               child: ListView.builder(
                 itemCount: 50,
@@ -57,27 +63,30 @@ class _ListPageState extends State<ListPage> {
                 ),
               ),
             ) */
-          AnimationLimiter(                                                                   //grid scale & fadeIn
-            child: GridView.count(
-              crossAxisCount: columnCount,
-              children: List.generate(
-                50,
-                (int index) {
-                  return AnimationConfiguration.staggeredGrid(
-                    position: index,
-                    duration: const Duration(milliseconds: 800),
-                    columnCount: columnCount,
-                    child: ScaleAnimation(
-                      child: FadeInAnimation(
-                        child: CardPlaceholder(),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          )
 
+            AnimationLimiter(                                                               //grid scale & fadeIn
+              child: 
+              GridView.count(
+                crossAxisCount: columnCount,
+                children: List.generate(
+                  50,
+                  (int index) {
+                    return AnimationConfiguration.staggeredGrid(
+                      position: index,
+                      duration: const Duration(milliseconds: 800),
+                      columnCount: columnCount,
+                      child: ScaleAnimation(
+                        child: FadeInAnimation(
+                          //child: FlipAnimation(
+                            child: CardPlaceholder(),
+                          //)
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            )   
     );
   }
 }
