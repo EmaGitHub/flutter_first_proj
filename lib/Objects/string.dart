@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class StringObj extends StatefulWidget {
 
-  String text;
-  int delay;
+  final String text;
+  final int delay;
 
   StringObj({Key key, @required this.text, @required this.delay})
       : super(key: key);

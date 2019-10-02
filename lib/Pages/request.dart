@@ -3,6 +3,9 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert'; //it allows us to convert our json to a list
 
+import 'package:connectivity/connectivity.dart';
+import 'package:toast/toast.dart';
+
 class RequestPage extends StatefulWidget {
   @override
   _RequestPageState createState() => new _RequestPageState();
@@ -16,21 +19,38 @@ class _RequestPageState extends State<RequestPage> {
     super.initState();
   }
 
+  void showToast(String msg, {int duration, int gravity}) {
+    Toast.show(msg, context, duration: duration, gravity: gravity);
+  }
   //this async func will get data from the internet
   //when our func is done we return a string
-  Future<String> getData() async {
-    //we have to wait to get the data so we use 'await'
-    http.Response response = await http.get(
-        //Uri.encodeFull removes all the dashes or extra characters present in our Uri
-        Uri.encodeFull("https://jsonplaceholder.typicode.com/posts"),
-        headers: {
-          //if your api require key then pass your key here as well e.g "key": "my-long-key"
-          "Accept": "application/json"
-        });
+  void getData() async {
 
-    setState(() {
-      data = jsonDecode(response.body);
-    });
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    
+    if (connectivityResult == ConnectivityResult.mobile) {
+      // I am connected to a mobile network.
+      makeHttpReq();
+    } else if (connectivityResult == ConnectivityResult.wifi) {
+      // I am connected to a wifi network.
+      makeHttpReq();
+    }
+    else showToast('You are offline. Please enable connection', duration: 2, gravity: Toast.BOTTOM);
+  }
+
+  void makeHttpReq() async{
+
+    http.Response response = await http.get(
+          //Uri.encodeFull removes all the dashes or extra characters present in our Uri
+          Uri.encodeFull("https://jsonplaceholder.typicode.com/posts"),
+          headers: {
+            //if your api require key then pass your key here as well e.g "key": "my-long-key"
+            "Accept": "application/json"
+          });
+
+      setState(() {
+        data = jsonDecode(response.body);
+      });
   }
 
   @override

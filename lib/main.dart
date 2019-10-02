@@ -48,11 +48,65 @@ class _MyHomePageState extends State<HomePage> {
     });
   }
 
+  String mainProfilePicture =
+      "https://randomuser.me/api/portraits/women/44.jpg";
+  String otherProfilePicture =
+      "https://randomuser.me/api/portraits/women/47.jpg";
+
+  void _switchUser() {
+    String backupString = mainProfilePicture;
+    this.setState(() {
+      mainProfilePicture = otherProfilePicture;
+      otherProfilePicture = backupString;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+      ),
+      drawer: new Drawer(
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              accountName: Text("Ashish Rawat"),
+              accountEmail: Text("ashishrawat2911@gmail.com"),
+              currentAccountPicture: CircleAvatar(
+                backgroundColor:
+                    Theme.of(context).platform == TargetPlatform.iOS
+                        ? Colors.blue
+                        : Colors.white,
+                child: Text(
+                  "A",
+                  style: TextStyle(fontSize: 40.0),
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('Animations Page'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(
+                builder: (BuildContext context) => AnimationsPage()));
+              },
+            ),
+            ListTile(
+              title: Text('Stack widget Page'),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(
+                builder: (BuildContext context) => StackWidget()));
+              },
+            ),
+          ],
+        ),
       ),
       body: Center(
         child: Column(

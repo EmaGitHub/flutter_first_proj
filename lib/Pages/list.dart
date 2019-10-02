@@ -23,7 +23,7 @@ class _ListPageState extends State<ListPage> {
         title: Text('List View'),
       ),
       body: 
-            /* AnimationLimiter(
+            /* AnimationLimiter(                                                          //List vertical offset
               child: ListView.builder(
                 itemCount: 50,
                 itemBuilder: (BuildContext context, int index) {
@@ -40,7 +40,7 @@ class _ListPageState extends State<ListPage> {
                 },
               ),
             ), */
-            /* SingleChildScrollView(
+            /* SingleChildScrollView(                                                       //list sliding x
               child:  AnimationLimiter(
                 child: Column(
                   children: AnimationConfiguration.toStaggeredList(
@@ -57,7 +57,7 @@ class _ListPageState extends State<ListPage> {
                 ),
               ),
             ) */
-          AnimationLimiter(
+          AnimationLimiter(                                                                   //grid scale & fadeIn
             child: GridView.count(
               crossAxisCount: columnCount,
               children: List.generate(
