@@ -8,6 +8,7 @@ class AnimationsPage extends StatefulWidget {
 
 class _AnimationsPageState extends State<AnimationsPage>
     with SingleTickerProviderStateMixin {
+      
   AnimationController boxController;
 
   bool _visible = true;

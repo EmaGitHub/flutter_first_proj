@@ -259,7 +259,7 @@ class _MyHomePageState extends State<HomePage> {
                     margin: EdgeInsets.only(top: 20),
                     child: RaisedButton(
                       child: Text(
-                        'Grid View Animations',
+                        'Grid/List View Animations',
                         style: TextStyle(fontSize: 20),
                       ),
                       onPressed: () {

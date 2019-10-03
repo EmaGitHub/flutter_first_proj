@@ -24,22 +24,17 @@ class _ListPageState extends State<ListPage> {
       ),
       body:
 
-         /*  RaisedButton(
-            child: Text('show list'),
-              onPressed: 
-                showList(),
-                ), */
             /* AnimationLimiter(                                                          //List vertical offset
               child: ListView.builder(
                 itemCount: 50,
                 itemBuilder: (BuildContext context, int index) {
                   return AnimationConfiguration.staggeredList(
                     position: index,
-                    duration: const Duration(milliseconds: 500),
+                    duration: const Duration(milliseconds: 1000),
                     child: SlideAnimation(
-                      verticalOffset: 50.0,
-                      child: FlipAnimation(
-                        child: Text('test'),
+                      verticalOffset: 40.0,
+                      child: FadeInAnimation(
+                        child: CardPlaceholder(),
                       ),
                     ),
                   );
