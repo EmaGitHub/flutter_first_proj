@@ -3,6 +3,8 @@ PODS:
     - Flutter
     - Reachability
   - Flutter (1.0.0)
+  - image_picker (0.0.1):
+    - Flutter
   - Reachability (3.2)
   - url_launcher (0.0.1):
     - Flutter
@@ -10,6 +12,7 @@ PODS:
 DEPENDENCIES:
   - connectivity (from `.symlinks/plugins/connectivity/ios`)
   - Flutter (from `.symlinks/flutter/ios`)
+  - image_picker (from `.symlinks/plugins/image_picker/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
 
 SPEC REPOS:
@@ -21,12 +24,15 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/connectivity/ios"
   Flutter:
     :path: ".symlinks/flutter/ios"
+  image_picker:
+    :path: ".symlinks/plugins/image_picker/ios"
   url_launcher:
     :path: ".symlinks/plugins/url_launcher/ios"
 
 SPEC CHECKSUMS:
   connectivity: c72716e202a1225ec4810740d5cb56b8ae3bf4cc
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  image_picker: 16e5fec1fbc87fd3b297c53e4048521eaf17cd06
   Reachability: 3c71d50935b3b3160760ffc6932418fb229c5544
   url_launcher: 0067ddb8f10d36786672aa0722a21717dba3a298
 
