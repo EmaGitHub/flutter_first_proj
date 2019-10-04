@@ -8,7 +8,6 @@ class AnimationsPage extends StatefulWidget {
 
 class _AnimationsPageState extends State<AnimationsPage>
     with SingleTickerProviderStateMixin {
-      
   AnimationController boxController;
 
   bool _visible = true;
@@ -24,7 +23,8 @@ class _AnimationsPageState extends State<AnimationsPage>
   initState() {
     super.initState();
 
-    new Future<String>.delayed(new Duration(milliseconds: 2000)).then((String value) {
+    new Future<String>.delayed(new Duration(milliseconds: 2000))
+        .then((String value) {
       setState(() {
         listWidget = ListObj();
       });
@@ -97,7 +97,7 @@ class _AnimationsPageState extends State<AnimationsPage>
       ),
     ));
 
-    Future.delayed(new Duration(milliseconds: 200), () {
+    Future.delayed(new Duration(milliseconds: 300), () {
       boxController.forward();
     });
   }
@@ -114,15 +114,17 @@ class _AnimationsPageState extends State<AnimationsPage>
           title: Text('Animations'),
         ),
         backgroundColor: Colors.white,
-        body: Center(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+        body: SingleChildScrollView(
+          padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 40),
+             child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Opacity(
                 opacity: opacityAnimation.value,
                 child: Container(
                   padding: EdgeInsets.only(top: 10, bottom: 10),
+                  margin: EdgeInsets.only(bottom: 20),
                   width: widthAnimation.value,
                   height: heightAnimation.value,
                   decoration: BoxDecoration(
@@ -137,17 +139,32 @@ class _AnimationsPageState extends State<AnimationsPage>
                     listWidget
                     
                 )),
-            FloatingActionButton(
-              heroTag: "btn",
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    FloatingActionButton(
+              heroTag: "btn1",
               tooltip: 'Increment',
               child: Icon(Icons.format_align_center),
               elevation: 20,
               onPressed: () {
                 this.animate();
               },
+            ),
+            FloatingActionButton(
+              heroTag: "btn2",
+              tooltip: 'Increment',
+              child: Icon(Icons.format_color_reset),
+              elevation: 20,
+              onPressed: () {
+                this.animate();
+              },
             )
+                  ],
+                )
+            
           ],
-        )));
+        ) ));
   }
 
   @override

@@ -125,7 +125,9 @@ class _MyHomePageState extends State<HomePage> {
 
             ParticleBackgroundApp(),
 
-            Center(
+            SingleChildScrollView(
+
+            child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
@@ -296,6 +298,7 @@ class _MyHomePageState extends State<HomePage> {
                 ],
               ),
             ),
+          ) 
         ]
       )
     );

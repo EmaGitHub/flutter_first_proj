@@ -56,7 +56,7 @@ class CustomPageRoute<T> extends PageRoute<T> {
   final bool maintainState;
 
   @override
-  Duration get transitionDuration => const Duration(milliseconds: 800);
+  Duration get transitionDuration => const Duration(milliseconds: 1000);
 
   @override
   Color get barrierColor => null;
