@@ -64,7 +64,7 @@ class _ListPageState extends State<ListPage> {
               GridView.count(
                 crossAxisCount: columnCount,
                 children: List.generate(
-                  50,
+                  30,
                   (int index) {
                     return AnimationConfiguration.staggeredGrid(
                       position: index,
@@ -73,7 +73,9 @@ class _ListPageState extends State<ListPage> {
                       child: ScaleAnimation(
                         child: FadeInAnimation(
                           //child: FlipAnimation(
-                            child: CardPlaceholder(),
+                            child: Container(
+                              child: CardPlaceholder(id: index),
+                            )
                           //)
                         ),
                       ),

@@ -32,7 +32,7 @@ class _ListObjState extends State<ListObj> {
                         ),
                       ),
                   children: <Widget>[
-                    for (int i = 1; i < 15; i++) CardPlaceholder()
+                    for (int i = 1; i < 15; i++) CardPlaceholder(id: i)
                   ]
                 ),
             ),

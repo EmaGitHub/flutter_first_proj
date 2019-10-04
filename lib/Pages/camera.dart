@@ -89,7 +89,11 @@ class _CameraPageState extends State<CameraPage> {
       
       CustomPageRoute(
       builder: (ctx) => Scaffold(
-        body: Center(
+        appBar: AppBar(
+          title: Text('Landing Page'),
+        ),
+        body: 
+        Center(
           child: Container(
             margin: EdgeInsets.only(top: 30),
           child: Column(

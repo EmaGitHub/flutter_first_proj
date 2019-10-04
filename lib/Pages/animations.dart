@@ -122,7 +122,7 @@ class _AnimationsPageState extends State<AnimationsPage>
             Opacity(
                 opacity: opacityAnimation.value,
                 child: Container(
-                  padding: EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
+                  padding: EdgeInsets.only(top: 10, bottom: 10),
                   width: widthAnimation.value,
                   height: heightAnimation.value,
                   decoration: BoxDecoration(
