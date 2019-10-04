@@ -1,4 +1,6 @@
+import 'package:first_proj/Objects/gridObj.dart';
 import 'package:first_proj/Objects/listObj.dart';
+import 'package:first_proj/Objects/listVertObj.dart';
 import 'package:flutter/material.dart';
 
 class AnimationsPage extends StatefulWidget {
@@ -7,10 +9,11 @@ class AnimationsPage extends StatefulWidget {
 }
 
 class _AnimationsPageState extends State<AnimationsPage>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   AnimationController boxController;
 
-  bool _visible = true;
+  bool _listVisible = true;
+  bool _gridVisible = true;
 
   Animation<double> opacityAnimation;
   Animation<double> widthAnimation;
@@ -18,17 +21,12 @@ class _AnimationsPageState extends State<AnimationsPage>
   Animation<BorderRadius> borderRadiusAnimation;
   Animation<Color> colorAnimation;
 
+  Animation<double> listOpacityAnimation;
+
   Widget listWidget;
 
   initState() {
     super.initState();
-
-    new Future<String>.delayed(new Duration(milliseconds: 2000))
-        .then((String value) {
-      setState(() {
-        listWidget = ListObj();
-      });
-    });
 
     boxController = AnimationController(
         duration: const Duration(milliseconds: 1900), vsync: this);
@@ -96,10 +94,6 @@ class _AnimationsPageState extends State<AnimationsPage>
         curve: Curves.ease,
       ),
     ));
-
-    Future.delayed(new Duration(milliseconds: 300), () {
-      boxController.forward();
-    });
   }
 
   @override
@@ -115,56 +109,59 @@ class _AnimationsPageState extends State<AnimationsPage>
         ),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
-          padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 40),
-             child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Opacity(
-                opacity: opacityAnimation.value,
-                child: Container(
-                  padding: EdgeInsets.only(top: 10, bottom: 10),
-                  margin: EdgeInsets.only(bottom: 20),
-                  width: widthAnimation.value,
-                  height: heightAnimation.value,
-                  decoration: BoxDecoration(
-                    color: colorAnimation.value,
-                    border: Border.all(
-                      color: Colors.blueAccent, 
-                      width: 2),
-                    borderRadius: borderRadiusAnimation.value,
-                  ),
-                  child: 
-                    
-                    listWidget
-                    
-                )),
+            padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 40),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Opacity(
+                    opacity: opacityAnimation.value,
+                    child: Container(
+                        padding: EdgeInsets.only(top: 10, bottom: 10),
+                        margin: EdgeInsets.only(bottom: 20),
+                        width: widthAnimation.value,
+                        height: heightAnimation.value,
+                        decoration: BoxDecoration(
+                          color: colorAnimation.value,
+                          border:
+                              Border.all(color: Colors.blueAccent, width: 2),
+                          borderRadius: borderRadiusAnimation.value,
+                        ),
+                        child: listWidget)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     FloatingActionButton(
-              heroTag: "btn1",
-              tooltip: 'Increment',
-              child: Icon(Icons.format_align_center),
-              elevation: 20,
-              onPressed: () {
-                this.animate();
-              },
-            ),
-            FloatingActionButton(
-              heroTag: "btn2",
-              tooltip: 'Increment',
-              child: Icon(Icons.format_color_reset),
-              elevation: 20,
-              onPressed: () {
-                this.animate();
-              },
-            )
+                      heroTag: "btn1",
+                      tooltip: 'Increment',
+                      child: Icon(Icons.format_align_center),
+                      elevation: 20,
+                      onPressed: () {
+                        this.animate('list');
+                      },
+                    ),
+                    FloatingActionButton(
+                      heroTag: "btn2",
+                      tooltip: 'Increment',
+                      child: Icon(Icons.grid_on),
+                      elevation: 20,
+                      onPressed: () {
+                        this.animate('grid');
+                      },
+                    ),
+                    FloatingActionButton(
+                      heroTag: "btn3",
+                      tooltip: 'Increment',
+                      child: Icon(Icons.vertical_align_bottom),
+                      elevation: 20,
+                      onPressed: () {
+                        this.animate('vert');
+                      },
+                    )
                   ],
                 )
-            
-          ],
-        ) ));
+              ],
+            )));
   }
 
   @override
@@ -175,12 +172,35 @@ class _AnimationsPageState extends State<AnimationsPage>
     );
   }
 
-  animate() {
-    if (this._visible) {
+  animate(String obj) {
+    if (this._listVisible) {
+      setState(() {
+        listWidget = null;
+      });
       this.boxController.reverse();
     } else {
       this.boxController.forward();
+      new Future<String>.delayed(new Duration(milliseconds: 2000))
+          .then((String value) {
+        show(obj);
+      });
     }
-    this._visible = !this._visible;
+    this._listVisible = !this._listVisible;
+  }
+
+  show(String obj) {
+    if (obj == 'list') {
+      setState(() {
+        listWidget = ListObj();
+      });
+    } else if (obj == 'grid') {
+      setState(() {
+        listWidget = GridObj();
+      });
+    } else {
+      setState(() {
+        listWidget = ListVertObj();
+      });
+    }
   }
 }

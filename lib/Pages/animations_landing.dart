@@ -12,6 +12,8 @@ class AnimationsLandingPage extends StatefulWidget {
 
 class _AnimationsLandingPageState extends State<AnimationsLandingPage> {
 
+  static const _GIF01 = "assets/gifs/alfaveyron.gif";
+
   @override
   initState() {
     super.initState();
@@ -31,7 +33,7 @@ class _AnimationsLandingPageState extends State<AnimationsLandingPage> {
             child: SingleChildScrollView(
               child: Container(
               margin: EdgeInsets.all(10),
-              height: 500,
+              height: 400,
               child: Card(
                 elevation: 3,
                 shape: new RoundedRectangleBorder(

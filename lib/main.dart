@@ -1,7 +1,6 @@
 import 'package:first_proj/Pages/animations.dart';
 import 'package:first_proj/Pages/camera.dart';
 import 'package:first_proj/Pages/layoutset.dart';
-import 'package:first_proj/Pages/list.dart';
 import 'package:first_proj/Pages/request.dart';
 import 'package:first_proj/Pages/stackwidget.dart';
 import 'package:first_proj/Pages/homescreen.dart';
@@ -202,7 +201,7 @@ class _MyHomePageState extends State<HomePage> {
                     margin: EdgeInsets.only(top: 10),
                     child: RaisedButton(
                       child: Text(
-                        'Stack Widget & Navbar',
+                        'Navbar',
                         style: TextStyle(fontSize: 20),
                       ),
                       onPressed: () {
@@ -249,25 +248,6 @@ class _MyHomePageState extends State<HomePage> {
                           context,
                           CupertinoPageRoute(
                               builder: (context) => CameraPage()),
-                        );
-                      },
-                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                      shape: RoundedRectangleBorder(
-                          side: BorderSide(color: Colors.black26, width: 4),
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 20),
-                    child: RaisedButton(
-                      child: Text(
-                        'Grid/List View Animations',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          CupertinoPageRoute(builder: (context) => ListPage()),
                         );
                       },
                       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
