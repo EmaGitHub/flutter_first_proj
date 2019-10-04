@@ -30,7 +30,7 @@ class Box extends StatelessWidget {
               width: width,
               height: height,
               child: isEnoughRoomForTypewriter(width)
-                  ? TypewriterText("Hello Flutter")
+                  ? TypewriterText("Flutter")
                   : Container(),
             );
           },
@@ -67,7 +67,7 @@ class TypewriterText extends StatelessWidget {
                 builder: (context, oneOrZero) {
                   return Opacity(
                       opacity: oneOrZero == 1 ? 1.0 : 0.0,
-                      child: Text("_", style: TEXT_STYLE));
+                      child: Text("", style: TEXT_STYLE));
                 },
               )
             ],

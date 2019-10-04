@@ -10,6 +10,7 @@ class StackWidget extends StatefulWidget {
 
 class _StateWidgetState extends State<StackWidget> {
   User user = new User('Username', 'Userlastname');
+  final items = List<String>.generate(20, (i) => "Item ${i + 1} swipe To delete Me");
 
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
@@ -21,21 +22,45 @@ class _StateWidgetState extends State<StackWidget> {
     });
   }
 
+  getNavigationView() {
+    switch (_selectedIndex) {
+      case 0:
+        return _buildUser('assets/images/avatar_circle.png', user.name);
+      case 1:
+        return ListView.builder(
+            itemCount: items.length,
+            itemBuilder: (context, index) {
+              final item = items[index];
 
-getNavigationView() {
-  switch(_selectedIndex){
+              return Dismissible(
+                // Each Dismissible must contain a Key. Keys allow Flutter to
+                // uniquely identify widgets.
+                key: Key(item),
+                // Provide a function that tells the app
+                // what to do after an item has been swiped away.
+                onDismissed: (direction) {
+                  // Remove the item from the data source.
+                  setState(() {
+                    items.removeAt(index);
+                  });
 
-    case 0:
+                  // Then show a snackbar.
+                  Scaffold.of(context).showSnackBar(SnackBar(
+                    content: Text("$item dismissed"),
+                    duration: Duration(milliseconds: 1000),
+                  ));
+                },
+                // Show a red background as the item is swiped away.
+                background: Container(color: Colors.red),
+                child: ListTile(title: Text('$item')),
+              );
+            },
+          );
 
-      return _buildUser('assets/images/avatar_circle.png', user.name);
-    case 1:
-
-      return ListObj();
-    case 2:
-
-    return _buildStack();
+      case 2:
+        return _buildStack();
+    }
   }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -44,16 +69,13 @@ getNavigationView() {
           title: Text('Stack'),
         ),
         body: SingleChildScrollView(
-          child: Center(
-          child: 
-            Container(
-                alignment: Alignment.topCenter,
-                margin: EdgeInsets.only(top: 20),
-                height: 500,
-                child: getNavigationView()
-                ),
-            )
-        ),
+            child: Center(
+          child: Container(
+              alignment: Alignment.topCenter,
+              margin: EdgeInsets.only(top: 20),
+              height: 500,
+              child: getNavigationView()),
+        )),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(

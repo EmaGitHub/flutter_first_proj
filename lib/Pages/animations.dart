@@ -131,33 +131,42 @@ class _AnimationsPageState extends State<AnimationsPage>
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    FloatingActionButton(
-                      heroTag: "btn1",
-                      tooltip: 'Increment',
-                      child: Icon(Icons.format_align_center),
-                      elevation: 20,
-                      onPressed: () {
-                        this.animate('list');
-                      },
-                    ),
-                    FloatingActionButton(
-                      heroTag: "btn2",
-                      tooltip: 'Increment',
-                      child: Icon(Icons.grid_on),
-                      elevation: 20,
-                      onPressed: () {
-                        this.animate('grid');
-                      },
-                    ),
-                    FloatingActionButton(
-                      heroTag: "btn3",
-                      tooltip: 'Increment',
-                      child: Icon(Icons.vertical_align_bottom),
-                      elevation: 20,
-                      onPressed: () {
-                        this.animate('vert');
-                      },
-                    )
+                    SizedBox(
+                        width: 70.0,
+                        height: 70.0,
+                        child: FloatingActionButton(
+                          heroTag: "btn1",
+                          tooltip: 'Increment',
+                          child: Icon(Icons.format_align_center),
+                          elevation: 20,
+                          onPressed: () {
+                            this.animate('list');
+                          },
+                        )),
+                    SizedBox(
+                        width: 70.0,
+                        height: 70.0,
+                        child: FloatingActionButton(
+                          heroTag: "btn2",
+                          tooltip: 'Increment',
+                          child: Icon(Icons.grid_on),
+                          elevation: 20,
+                          onPressed: () {
+                            this.animate('grid');
+                          },
+                        )),
+                    SizedBox(
+                        width: 70.0,
+                        height: 70.0,
+                        child: FloatingActionButton(
+                          heroTag: "btn3",
+                          tooltip: 'Increment',
+                          child: Icon(Icons.vertical_align_bottom),
+                          elevation: 20,
+                          onPressed: () {
+                            this.animate('vert');
+                          },
+                        ))
                   ],
                 )
               ],
