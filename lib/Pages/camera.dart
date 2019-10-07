@@ -11,7 +11,6 @@ class CameraPage extends StatefulWidget {
 
 class _CameraPageState extends State<CameraPage> {
 
-  
   File _image;
 
   Widget _blueIconRectangle() {
@@ -36,6 +35,7 @@ class _CameraPageState extends State<CameraPage> {
   }
 
   Future getImage() async {
+
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
 
     setState(() {

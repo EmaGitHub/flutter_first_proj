@@ -1,4 +1,3 @@
-import 'package:first_proj/animations/FadeIn.dart';
 import 'package:flutter/material.dart';
 
 class AnimationsLandingPage extends StatefulWidget {

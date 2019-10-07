@@ -1,5 +1,4 @@
 import 'package:first_proj/Objects/CardPlaceholder.dart';
-import 'package:first_proj/examples/fade_in_ui.dart' as prefix0;
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart'; //Attraverso questa libreria, Flutter dispone di tutte le funzionalità, colori e widget, noti come material component
 

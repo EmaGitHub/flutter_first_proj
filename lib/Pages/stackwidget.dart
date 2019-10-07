@@ -1,4 +1,3 @@
-import 'package:first_proj/Objects/listObj.dart';
 import 'package:flutter/material.dart'; //Attraverso questa libreria, Flutter dispone di tutte le funzionalità, colori e widget, noti come material component
 
 class StackWidget extends StatefulWidget {

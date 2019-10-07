@@ -13,7 +13,6 @@ class _AnimationsPageState extends State<AnimationsPage>
   AnimationController boxController;
 
   bool _listVisible = true;
-  bool _gridVisible = true;
 
   Animation<double> opacityAnimation;
   Animation<double> widthAnimation;

@@ -1,5 +1,6 @@
 import 'package:first_proj/Pages/animations.dart';
 import 'package:first_proj/Pages/camera.dart';
+import 'package:first_proj/Pages/flare.dart';
 import 'package:first_proj/Pages/layoutset.dart';
 import 'package:first_proj/Pages/request.dart';
 import 'package:first_proj/Pages/stackwidget.dart';
@@ -47,19 +48,6 @@ class _MyHomePageState extends State<HomePage> {
   void _decrementCounter() {
     setState(() {
       _counter--;
-    });
-  }
-
-  String mainProfilePicture =
-      "https://randomuser.me/api/portraits/women/44.jpg";
-  String otherProfilePicture =
-      "https://randomuser.me/api/portraits/women/47.jpg";
-
-  void _switchUser() {
-    String backupString = mainProfilePicture;
-    this.setState(() {
-      mainProfilePicture = otherProfilePicture;
-      otherProfilePicture = backupString;
     });
   }
 
@@ -248,6 +236,25 @@ class _MyHomePageState extends State<HomePage> {
                           context,
                           CupertinoPageRoute(
                               builder: (context) => CameraPage()),
+                        );
+                      },
+                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      shape: RoundedRectangleBorder(
+                          side: BorderSide(color: Colors.black26, width: 4),
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 20),
+                    child: RaisedButton(
+                      child: Text(
+                        'Flare',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          CupertinoPageRoute(builder: (context) => FlarePage()),
                         );
                       },
                       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),

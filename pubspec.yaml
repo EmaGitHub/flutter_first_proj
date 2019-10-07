@@ -32,6 +32,8 @@ dependencies:
   connectivity: ^0.4.4
   toast: ^0.1.5
 
+  flare_flutter: any
+
   image_picker: "^0.6.1+4"
 
 dev_dependencies:
@@ -56,6 +58,7 @@ flutter:
   assets:
     - assets/images/
     - assets/gifs/
+    - assets/animations/
   fonts:
     - family: FFF_Tusj
       fonts:
