@@ -1,4 +1,4 @@
-import 'package:first_proj/Pages/animations.dart';
+import 'package:first_proj/Pages/animations-list.dart';
 import 'package:first_proj/Pages/camera.dart';
 import 'package:first_proj/Pages/flare.dart';
 import 'package:first_proj/Pages/layoutset.dart';
@@ -14,6 +14,7 @@ void main() => runApp(
     MyApp()); //Una volta eseguito, il compilatore creerà un’istanza della classe MyApp e la passerà alla funzione runApp che eseguirà l’applicazione
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -37,6 +38,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<HomePage> {
+  
   int _counter = 0;
 
   void _incrementCounter() {
@@ -120,7 +122,7 @@ class _MyHomePageState extends State<HomePage> {
                 children: <Widget>[
                   RaisedButton(
                     child: Text(
-                      'HTTP Request PAGE',
+                      'Reactive Prog, stream, BLoC',
                       style: TextStyle(fontSize: 20),
                     ),
                     onPressed: () {

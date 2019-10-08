@@ -11,7 +11,7 @@ class RequestPage extends StatefulWidget {
 }
 
 class _RequestPageState extends State<RequestPage> {
-  List data = [];
+  List data;
 
   @override
   initState() {
@@ -37,6 +37,14 @@ class _RequestPageState extends State<RequestPage> {
     else showToast('You are offline. Please enable connection', duration: 2, gravity: Toast.BOTTOM);
   }
 
+  void deleteData(){
+
+    setState(() {
+      
+      data = [];
+    });
+  }
+
   void makeHttpReq() async{
 
     http.Response response = await http.get(
@@ -47,9 +55,9 @@ class _RequestPageState extends State<RequestPage> {
             "Accept": "application/json"
           });
 
-      setState(() {
-        data = jsonDecode(response.body);
-      });
+    setState(() {
+      data = jsonDecode(response.body);
+    });
   }
 
   @override
@@ -62,21 +70,40 @@ class _RequestPageState extends State<RequestPage> {
         child: Center(
           child: Column(
             children: <Widget>[
-              RaisedButton(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                RaisedButton(
                   child: new Text("Get data!",
                       style: new TextStyle(
                           color: Colors.white,
                           fontStyle: FontStyle.italic,
                           fontSize: 20.0)),
                   onPressed: getData),
+                  RaisedButton(
+                  child: new Text("Delete data!",
+                      style: new TextStyle(
+                          color: Colors.white,
+                          fontStyle: FontStyle.italic,
+                          fontSize: 20.0)),
+                  onPressed: deleteData),
+              ],
+              ),
+              
               Container(
                 margin: EdgeInsets.all(20),
-                child: Text('' + data.toString()),
+                child: getResp(),
               )
             ],
           ),
         ),
       ),
     );
+  }
+
+  Widget getResp(){
+
+    if (data != null) return Text('' + data.toString());
+    else return Text('');
   }
 }

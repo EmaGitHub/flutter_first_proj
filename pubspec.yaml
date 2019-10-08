@@ -33,8 +33,9 @@ dependencies:
   toast: ^0.1.5
 
   flare_flutter: any
-
   image_picker: "^0.6.1+4"
+
+  rxdart: ^0.22.3
 
 dev_dependencies:
   flutter_test:
