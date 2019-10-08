@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart'; //Attraverso questa libreria, Flutter dispone di tutte le funzionalità, colori e widget, noti come material component
 import 'package:http/http.dart' as http;
 import 'dart:convert'; //it allows us to convert our json to a list
@@ -11,6 +13,7 @@ class RequestPage extends StatefulWidget {
 }
 
 class _RequestPageState extends State<RequestPage> {
+  
   List data;
 
   @override
@@ -76,14 +79,14 @@ class _RequestPageState extends State<RequestPage> {
                 RaisedButton(
                   child: new Text("Get data!",
                       style: new TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontStyle: FontStyle.italic,
                           fontSize: 20.0)),
                   onPressed: getData),
                   RaisedButton(
                   child: new Text("Delete data!",
                       style: new TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontStyle: FontStyle.italic,
                           fontSize: 20.0)),
                   onPressed: deleteData),
@@ -93,7 +96,21 @@ class _RequestPageState extends State<RequestPage> {
               Container(
                 margin: EdgeInsets.all(20),
                 child: getResp(),
-              )
+              ),
+              RaisedButton(
+                  child: new Text("Start single Stream!",
+                      style: new TextStyle(
+                          color: Colors.black,
+                          fontStyle: FontStyle.italic,
+                          fontSize: 20.0)),
+                  onPressed: startStream),
+                  RaisedButton(
+                  child: new Text("Start broadcast Stream!",
+                      style: new TextStyle(
+                          color: Colors.black,
+                          fontStyle: FontStyle.italic,
+                          fontSize: 20.0)),
+                  onPressed: startBroadcastStream)
             ],
           ),
         ),
@@ -105,5 +122,53 @@ class _RequestPageState extends State<RequestPage> {
 
     if (data != null) return Text('' + data.toString());
     else return Text('');
+  }
+
+  startStream(){
+
+  //
+  // Initialize a "Single-Subscription" Stream controller
+  //
+  final StreamController ctrl = new StreamController();
+  //
+  // Initialize a single listener which simply prints the data
+  // as soon as it receives it
+  //
+  final StreamSubscription subscription = ctrl.stream.listen((data) => print('$data'));
+  //
+  // We here add the data that will flow inside the stream
+  //
+  ctrl.sink.add('my name');
+  ctrl.sink.add(1234);
+  ctrl.sink.add({'a': 'element A', 'b': 'element B'});
+  ctrl.sink.add(123.45);
+  //
+  // We release the StreamController
+  //
+  ctrl.close();
+  }
+
+  startBroadcastStream(){ 
+  //
+  // Initialize a "Broadcast" Stream controller of integers
+  //
+  final StreamController<int> ctrl2 = new  StreamController<int>.broadcast();
+  //
+  // Initialize a single listener which filters out the odd numbers and
+  // only prints the even numbers
+  //
+  final StreamSubscription subscription2 = ctrl2.stream
+					      .where((value) => (value % 2 == 0))
+					      .listen((value) => print('$value'));    //
+  // We here add the data that will flow inside the stream
+  //
+  for(int i=1; i<11; i++){
+  	ctrl2.sink.add(i);
+  }
+  
+  //
+  // We release the StreamController
+  //
+  ctrl2.close();
   }
 }
