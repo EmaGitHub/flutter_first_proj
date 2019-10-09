@@ -79,7 +79,7 @@ class _AnimationsLandingPageState extends State<AnimationsLandingPage> {
                           ],
                         ),
                         WhitespaceSeparator(),
-                        Row(
+                        /* Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             /* FadeIn(1, SquarePlaceholder()),
@@ -89,11 +89,11 @@ class _AnimationsLandingPageState extends State<AnimationsLandingPage> {
                               SquarePlaceholder(),
                                SquarePlaceholder()
                           ],
-                        ),
+                        ), */
                         WhitespaceSeparator(),
                         HeaderPlaceholder(),
                         WhitespaceSeparator(),
-                        Row(
+                        /* Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             /* FadeIn(1, SquarePlaceholder()),
@@ -102,7 +102,7 @@ class _AnimationsLandingPageState extends State<AnimationsLandingPage> {
                              SquarePlaceholder(),
                                SquarePlaceholder()
                           ],
-                        ),
+                        ), */
                         WhitespaceSeparator(),
                         Expanded(
                               child: Column(

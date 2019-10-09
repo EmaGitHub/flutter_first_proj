@@ -12,7 +12,7 @@ class _AnimationsPageState extends State<AnimationsPage>
     with TickerProviderStateMixin {
   AnimationController boxController;
 
-  bool _listVisible = true;
+  bool _listVisible = false;
 
   Animation<double> opacityAnimation;
   Animation<double> widthAnimation;

@@ -73,21 +73,6 @@ class _MyHomePageState extends State<HomePage> {
                   child: FancyBackgroundApp(),
                 ),
               ),
-              /* UserAccountsDrawerHeader(
-              accountName: Text("Ashish Rawat"),
-              accountEmail: Text("ashishrawat2911@gmail.com"),
-              currentAccountPicture: CircleAvatar(
-                backgroundColor:
-                    Theme.of(context).platform == TargetPlatform.iOS
-                        ? Colors.blue
-                        : Colors.white,
-                child: 
-                Text(
-                  "A",
-                  style: TextStyle(fontSize: 40.0),
-                ),
-              ),
-            ), */
               ListTile(
                 leading: new Icon(Icons.airline_seat_legroom_normal),
                 title: Text('Animations Page'),

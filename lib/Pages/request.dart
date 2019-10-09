@@ -16,6 +16,16 @@ class _RequestPageState extends State<RequestPage> {
   
   List data;
 
+    //
+  // Initialize a "Single-Subscription" Stream controller
+  //
+  final StreamController ctrl = new StreamController();
+
+  //
+  // Initialize a "Broadcast" Stream controller of integers
+  //
+  final StreamController<int> ctrl2 = new  StreamController<int>.broadcast();
+
   @override
   initState() {
     super.initState();
@@ -64,6 +74,13 @@ class _RequestPageState extends State<RequestPage> {
   }
 
   @override
+  void dispose(){
+    ctrl.close();
+    ctrl2.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -82,20 +99,20 @@ class _RequestPageState extends State<RequestPage> {
                           color: Colors.black,
                           fontStyle: FontStyle.italic,
                           fontSize: 20.0)),
-                  onPressed: getData),
+                  onPressed: (){getData();}),
                   RaisedButton(
                   child: new Text("Delete data!",
                       style: new TextStyle(
                           color: Colors.black,
                           fontStyle: FontStyle.italic,
                           fontSize: 20.0)),
-                  onPressed: deleteData),
+                  onPressed: (){deleteData();}),
               ],
               ),
               
               Container(
                 margin: EdgeInsets.all(20),
-                child: getResp(),
+                child: getResp()
               ),
               RaisedButton(
                   child: new Text("Start single Stream!",
@@ -127,10 +144,6 @@ class _RequestPageState extends State<RequestPage> {
   startStream(){
 
   //
-  // Initialize a "Single-Subscription" Stream controller
-  //
-  final StreamController ctrl = new StreamController();
-  //
   // Initialize a single listener which simply prints the data
   // as soon as it receives it
   //
@@ -145,14 +158,12 @@ class _RequestPageState extends State<RequestPage> {
   //
   // We release the StreamController
   //
-  ctrl.close();
+  //subscription.cancel();
+  //ctrl.close();
   }
 
-  startBroadcastStream(){ 
-  //
-  // Initialize a "Broadcast" Stream controller of integers
-  //
-  final StreamController<int> ctrl2 = new  StreamController<int>.broadcast();
+  startBroadcastStream() async{ 
+  
   //
   // Initialize a single listener which filters out the odd numbers and
   // only prints the even numbers
@@ -169,6 +180,7 @@ class _RequestPageState extends State<RequestPage> {
   //
   // We release the StreamController
   //
+  ctrl2.sink.add(12);
   ctrl2.close();
   }
 }

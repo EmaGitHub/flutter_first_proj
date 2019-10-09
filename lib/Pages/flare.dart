@@ -1,5 +1,4 @@
 import 'package:first_proj/animations/smart_flare_animation.dart';
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 
 class FlarePage extends StatefulWidget {
