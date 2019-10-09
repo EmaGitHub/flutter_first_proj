@@ -17,28 +17,27 @@ void main() {
   final bloc = CounterBloc();
   runApp(MyApp(bloc));
 }
- //Una volta eseguito, il compilatore creerà un’istanza della classe MyApp e la passerà alla funzione runApp che eseguirà l’applicazione
+//Una volta eseguito, il compilatore creerà un’istanza della classe MyApp e la passerà alla funzione runApp che eseguirà l’applicazione
 
 class MyApp extends StatelessWidget {
-
   final CounterBloc bloc;
 
   MyApp(this.bloc);
 
   @override
   Widget build(BuildContext context) {
-
     return BlocProvider(
-      bloc: bloc,
-      child: MaterialApp(
-      title: 'Flutter App',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: HomePage(title: 'Home Page'), //OrangeContainer(text: 'Lesson 10')
-      )
-    );
+        bloc: bloc,
+        child: MaterialApp(
+          title: 'Flutter App',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home:
+              HomePage(title: 'Home Page'), //OrangeContainer(text: 'Lesson 10')
+        )
+        );
   }
 }
 
@@ -52,7 +51,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<HomePage> {
-
   @override
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of(context);
@@ -95,14 +93,10 @@ class _MyHomePageState extends State<HomePage> {
             ],
           ),
         ),
-        body: Stack(
-          children: <Widget>[
-
-            ParticleBackgroundApp(),
-
-            SingleChildScrollView(
-              padding: EdgeInsets.only(top: 20, bottom: 30),
-
+        body: Stack(children: <Widget>[
+          ParticleBackgroundApp(),
+          SingleChildScrollView(
+            padding: EdgeInsets.only(top: 20, bottom: 30),
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -113,42 +107,41 @@ class _MyHomePageState extends State<HomePage> {
                       style: TextStyle(fontSize: 20),
                     ),
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => RequestPage()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RequestPage()
+                              ));
                     },
                     padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-                    
                     shape: RoundedRectangleBorder(
                         side: BorderSide(color: Colors.black26, width: 4),
                         borderRadius: BorderRadius.circular(10)),
                   ),
                   Text(
                     'You have pushed the button this many times:',
-                    style: TextStyle(
-                      color: Colors.white ),
-                    
+                    style: TextStyle(color: Colors.white),
                   ),
                   StreamBuilder(
-                stream: bloc.counter$,
-                builder: (context, snapshot) => snapshot.hasData
-                    ? Text('${snapshot.data}',
-                        style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 40 ))
-                    : CircularProgressIndicator()),
-                  
+                      stream: bloc.counter$(),
+                      builder: (context, snapshot) => snapshot.hasData
+                          ? Text('${snapshot.data}',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 40))
+                          : CircularProgressIndicator()
+                          ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
                       FloatingActionButton(
                         heroTag: "btn1",
-                        onPressed: () => bloc.decrement.add(null),
+                        onPressed: () => bloc.decrement().add(null),
                         tooltip: 'Decrement',
                         child: Icon(Icons.remove),
                       ),
                       FloatingActionButton(
                         heroTag: "btn2",
-                        onPressed: () => bloc.increment.add(null),
+                        onPressed: () => bloc.increment().add(null),
                         tooltip: 'Increment',
                         child: Icon(Icons.add),
                       )
@@ -181,10 +174,12 @@ class _MyHomePageState extends State<HomePage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => StackWidget()),
+                          MaterialPageRoute(
+                              builder: (context) => StackWidget()),
                         );
                       },
-                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                       shape: RoundedRectangleBorder(
                           side: BorderSide(color: Colors.black26, width: 4),
                           borderRadius: BorderRadius.circular(10)),
@@ -204,7 +199,8 @@ class _MyHomePageState extends State<HomePage> {
                               builder: (context) => AnimationsPage()),
                         );
                       },
-                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                       shape: RoundedRectangleBorder(
                           side: BorderSide(color: Colors.black26, width: 4),
                           borderRadius: BorderRadius.circular(10)),
@@ -224,7 +220,8 @@ class _MyHomePageState extends State<HomePage> {
                               builder: (context) => CameraPage()),
                         );
                       },
-                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                       shape: RoundedRectangleBorder(
                           side: BorderSide(color: Colors.black26, width: 4),
                           borderRadius: BorderRadius.circular(10)),
@@ -243,7 +240,8 @@ class _MyHomePageState extends State<HomePage> {
                           CupertinoPageRoute(builder: (context) => FlarePage()),
                         );
                       },
-                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                       shape: RoundedRectangleBorder(
                           side: BorderSide(color: Colors.black26, width: 4),
                           borderRadius: BorderRadius.circular(10)),
@@ -259,10 +257,12 @@ class _MyHomePageState extends State<HomePage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          CupertinoPageRoute(builder: (context) => Homescreen()),
+                          CupertinoPageRoute(
+                              builder: (context) => Homescreen()),
                         );
                       },
-                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                       shape: RoundedRectangleBorder(
                           side: BorderSide(color: Colors.black26, width: 4),
                           borderRadius: BorderRadius.circular(10)),
@@ -271,9 +271,7 @@ class _MyHomePageState extends State<HomePage> {
                 ],
               ),
             ),
-          ) 
-        ]
-      )
-    );
+          )
+        ]));
   }
 }

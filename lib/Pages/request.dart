@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:first_proj/BLoC/BlocProvider.dart';
 import 'package:flutter/material.dart'; //Attraverso questa libreria, Flutter dispone di tutte le funzionalità, colori e widget, noti come material component
 import 'package:http/http.dart' as http;
 import 'dart:convert'; //it allows us to convert our json to a list
@@ -16,7 +17,9 @@ class _RequestPageState extends State<RequestPage> {
   
   List data;
 
-    //
+  int controller2count = 2;
+
+  //
   // Initialize a "Single-Subscription" Stream controller
   //
   final StreamController ctrl = new StreamController();
@@ -24,7 +27,14 @@ class _RequestPageState extends State<RequestPage> {
   //
   // Initialize a "Broadcast" Stream controller of integers
   //
-  final StreamController<int> ctrl2 = new  StreamController<int>.broadcast();
+  static final StreamController<int> ctrl2 = new  StreamController<int>.broadcast();
+  //
+  // Initialize a single listener which filters out the odd numbers and
+  // only prints the even numbers
+  //
+  final StreamSubscription subscription2 = ctrl2.stream
+					      .where((value) => (value % 2 == 0))
+					      .listen((value) => print('$value'));
 
   @override
   initState() {
@@ -82,6 +92,8 @@ class _RequestPageState extends State<RequestPage> {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = BlocProvider.of(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Req Page'),
@@ -114,20 +126,37 @@ class _RequestPageState extends State<RequestPage> {
                 margin: EdgeInsets.all(20),
                 child: getResp()
               ),
+              Container(
+                margin: EdgeInsets.only(top: 10),
+                child: Column(children: <Widget>[
+                      Text(
+                    'You have pushed the button this many times:',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  StreamBuilder(
+                      stream: bloc.counter$(),
+                      builder: (context, snapshot) => snapshot.hasData
+                          ? Text('${snapshot.data}',
+                              style:
+                                  TextStyle( fontSize: 40))
+                          : CircularProgressIndicator()
+                          )
+                ],)
+              ),
               RaisedButton(
                   child: new Text("Start single Stream!",
                       style: new TextStyle(
                           color: Colors.black,
                           fontStyle: FontStyle.italic,
                           fontSize: 20.0)),
-                  onPressed: startStream),
+                  onPressed: () { startStream(); }),
                   RaisedButton(
                   child: new Text("Start broadcast Stream!",
                       style: new TextStyle(
                           color: Colors.black,
                           fontStyle: FontStyle.italic,
                           fontSize: 20.0)),
-                  onPressed: startBroadcastStream)
+                  onPressed: (){ startBroadcastStream(); }),
             ],
           ),
         ),
@@ -147,40 +176,38 @@ class _RequestPageState extends State<RequestPage> {
   // Initialize a single listener which simply prints the data
   // as soon as it receives it
   //
-  final StreamSubscription subscription = ctrl.stream.listen((data) => print('$data'));
-  //
-  // We here add the data that will flow inside the stream
-  //
-  ctrl.sink.add('my name');
-  ctrl.sink.add(1234);
-  ctrl.sink.add({'a': 'element A', 'b': 'element B'});
-  ctrl.sink.add(123.45);
+  try{
+    final StreamSubscription subscription = ctrl.stream.listen((data) => print('$data'));
+    //
+    // We here add the data that will flow inside the stream
+    //
+    ctrl.sink.add('my name');
+    ctrl.sink.add(1234);
+    ctrl.sink.add({'a': 'element A', 'b': 'element B'});
+    ctrl.sink.add(123.45);
+  }
+  catch (err){
+    print('Error '+err.toString());
+  }
+  
   //
   // We release the StreamController
   //
-  //subscription.cancel();
   //ctrl.close();
   }
 
   startBroadcastStream() async{ 
-  
+      
   //
-  // Initialize a single listener which filters out the odd numbers and
-  // only prints the even numbers
-  //
-  final StreamSubscription subscription2 = ctrl2.stream
-					      .where((value) => (value % 2 == 0))
-					      .listen((value) => print('$value'));    //
   // We here add the data that will flow inside the stream
   //
-  for(int i=1; i<11; i++){
-  	ctrl2.sink.add(i);
-  }
+  	ctrl2.sink.add(controller2count);
+
+    controller2count += 2;
   
   //
   // We release the StreamController
   //
-  ctrl2.sink.add(12);
-  ctrl2.close();
+  //ctrl2.close();
   }
 }
