@@ -101,6 +101,27 @@ class _MyHomePageState extends State<HomePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+                    child: RaisedButton(
+                      child: Text(
+                        'Animations List',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (context) => AnimationsPage()),
+                        );
+                      },
+                      padding:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      shape: RoundedRectangleBorder(
+                          side: BorderSide(color: Colors.black26, width: 4),
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
+                  ),
                   RaisedButton(
                     child: Text(
                       'Reactive Prog, stream, BLoC',
@@ -113,7 +134,7 @@ class _MyHomePageState extends State<HomePage> {
                               builder: (context) => RequestPage()
                               ));
                     },
-                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                    //padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                     shape: RoundedRectangleBorder(
                         side: BorderSide(color: Colors.black26, width: 4),
                         borderRadius: BorderRadius.circular(10)),
@@ -176,27 +197,6 @@ class _MyHomePageState extends State<HomePage> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => StackWidget()),
-                        );
-                      },
-                      padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                      shape: RoundedRectangleBorder(
-                          side: BorderSide(color: Colors.black26, width: 4),
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 10),
-                    child: RaisedButton(
-                      child: Text(
-                        'Animations List',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                              builder: (context) => AnimationsPage()),
                         );
                       },
                       padding:

@@ -93,6 +93,8 @@ class _AnimationsPageState extends State<AnimationsPage>
         curve: Curves.ease,
       ),
     ));
+
+    this.animate('vert');
   }
 
   @override
@@ -188,7 +190,7 @@ class _AnimationsPageState extends State<AnimationsPage>
       this.boxController.reverse();
     } else {
       this.boxController.forward();
-      new Future<String>.delayed(new Duration(milliseconds: 2000))
+      new Future<String>.delayed(new Duration(milliseconds: 1800))
           .then((String value) {
         show(obj);
       });
