@@ -71,8 +71,8 @@ class _LocationScreenState extends State<LocationScreen> {
           return Center(child: Text('No Results'));
         } else {
 
-          print("RESULTs: ");
-          results.forEach((e) => {print(e.name)});
+         /*  print("RESULTs: ");
+          results.forEach((e) => {print(e.name)}); */
           return _buildSearchResults(results);
         }
       },

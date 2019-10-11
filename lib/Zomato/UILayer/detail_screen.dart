@@ -1,4 +1,5 @@
 import 'package:first_proj/Zomato/BLoCLayer/location_bloc.dart';
+import 'package:first_proj/Zomato/DataLayer/cousine.dart';
 import 'package:flutter/material.dart';
 
 class DetailScreen extends StatelessWidget {
@@ -14,26 +15,35 @@ class DetailScreen extends StatelessWidget {
         builder: (context, snapshot) {
           final results = snapshot.data;
 
-          if (results == null) {
-            return Scaffold();
-          } else {
-            results.forEach((e) => {print('-' + e)});
-            return Scaffold(
-                appBar: AppBar(
-                  title: Text('Cousines available'),
-                ),
-                body: ListView.separated(
-                  itemCount: results.length,
-                  separatorBuilder: (BuildContext context, int index) =>
-                      Divider(),
-                  itemBuilder: (context, index) {
-                    final cousine = results[index];
-                    return ListTile(
-                      title: Text("-" + cousine),
-                    );
-                  },
-                ));
-          }
+          return Scaffold(
+            appBar: AppBar(
+              title: Text('Cousines available'),
+            ),
+            body: bodyContent(results),
+          );
         });
+  }
+
+  Widget bodyContent(List<Cousine> results) {
+    if (results == null) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            CircularProgressIndicator(),
+          ],
+        ),
+      );
+    } else
+      return ListView.separated(
+        itemCount: results.length,
+        separatorBuilder: (BuildContext context, int index) => Divider(),
+        itemBuilder: (context, index) {
+          final cousine = results[index];
+          return ListTile(
+            title: Text("-" + cousine.name),
+          );
+        },
+      );
   }
 }

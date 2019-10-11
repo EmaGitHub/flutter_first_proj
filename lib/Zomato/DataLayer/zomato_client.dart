@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:first_proj/Zomato/DataLayer/cousine.dart';
 import 'package:first_proj/Zomato/DataLayer/location.dart';
 import 'package:http/http.dart' as http;
 
@@ -61,14 +62,50 @@ class ZomatoClient {
     }
   }
 
-  List<String> fetchCousines(){
+  String responseCousinesString;
+  List<Cousine> cousinesList = new List<Cousine>();
 
-    List<String> cousinesList = ["American",
+  Future<List<Cousine>> fetchCousines(String entityId) async{
+
+   /*  List<String> cousinesList = ["American",
     "Sandwich",
     "Burger",
     "Italian",
-    "Japanese"];
+    "Japanese"]; */
 
-    return cousinesList;
+    var queryParameters = {
+      "entity_id": entityId,
+      "entity_type": "city"
+    };
+
+    var uri = Uri.https(
+        domain, detailPath, queryParameters);
+
+    try {
+      var response = await http.get(uri, headers: {
+        //HttpHeaders.authorizationHeader: 'Token $token',
+        HttpHeaders.contentTypeHeader: 'application/json',
+        "user-key": _apiKey,        
+      });
+      responseString = response.body;
+      //print("RESPONSE "+responseString);
+      Map<String, dynamic> json = jsonDecode(responseString);
+
+      print("JSON "+json.toString());
+      cousinesList = [];
+      for (int i = 0; i < json['top_cuisines'].length; i++) {
+        cousinesList.add(
+            new Cousine(
+              json['top_cuisines'][i].toString()
+              ));
+      }
+
+      return cousinesList;
+
+    } catch (err) {
+      print('Error fetching cousines');
+      print(err);
+      return null;
+    }
   }
 }

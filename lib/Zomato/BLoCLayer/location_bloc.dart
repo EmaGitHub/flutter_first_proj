@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:first_proj/Zomato/BLoCLayer/bloc.dart';
+import 'package:first_proj/Zomato/DataLayer/cousine.dart';
 import 'package:first_proj/Zomato/DataLayer/location.dart';
 import 'package:first_proj/Zomato/DataLayer/zomato_client.dart';
 
@@ -11,16 +12,17 @@ class LocationBloc implements Bloc {
   ZomatoClient client = ZomatoClient();
 
   // 1
-  final _cousinesController = StreamController<List<String>>();
+  final _cousinesController = StreamController<List<Cousine>>();
 
   // 2
-  Stream<List<String>> get cousinesStream => _cousinesController.stream;
-
+  Stream<List<Cousine>> get cousinesStream => _cousinesController.stream;
+ 
   // 3
   void selectLocation(Location location) async {
     _location = location;
     location.toString();
-    final result = await client.fetchCousines();
+    final result = await client.fetchCousines(location.entityId.toString());
+    result.forEach((e)=>{print('---'+e.name)});
     _cousinesController.sink.add(result);
   }
 
