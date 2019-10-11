@@ -6,6 +6,7 @@ import 'package:first_proj/Pages/layoutset.dart';
 import 'package:first_proj/Pages/request.dart';
 import 'package:first_proj/Pages/stackwidget.dart';
 import 'package:first_proj/Pages/homescreen.dart';
+import 'package:first_proj/Zomato/UILayer/location_screen.dart';
 import 'package:first_proj/examples/fancy_background.dart';
 import 'package:first_proj/examples/particle_background.dart';
 import 'package:flutter/cupertino.dart';
@@ -139,10 +140,7 @@ class _MyHomePageState extends State<HomePage> {
                         side: BorderSide(color: Colors.black26, width: 4),
                         borderRadius: BorderRadius.circular(10)),
                   ),
-                  Text(
-                    'You have pushed the button this many times:',
-                    style: TextStyle(color: Colors.white),
-                  ),
+
                   StreamBuilder(
                       stream: bloc.counter$(),
                       builder: (context, snapshot) => snapshot.hasData
@@ -167,6 +165,23 @@ class _MyHomePageState extends State<HomePage> {
                         child: Icon(Icons.add),
                       )
                     ],
+                  ),
+                  RaisedButton(
+                    child: Text(
+                      'Zomato eating app',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                            builder: (context) => LocationScreen()),
+                      );
+                    },
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                    shape: RoundedRectangleBorder(
+                        side: BorderSide(color: Colors.black26, width: 4),
+                        borderRadius: BorderRadius.circular(10)),
                   ),
                   RaisedButton(
                     child: Text(
