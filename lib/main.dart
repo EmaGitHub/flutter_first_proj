@@ -192,7 +192,7 @@ class _MyHomePageState extends State<HomePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LayoutSet(text: 'Detail')),
+                            builder: (context) => LayoutSet(text: 'Layout Settings')),
                       );
                     },
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -204,7 +204,7 @@ class _MyHomePageState extends State<HomePage> {
                     margin: EdgeInsets.only(top: 10),
                     child: RaisedButton(
                       child: Text(
-                        'Navbar',
+                        'Navbar-Stack',
                         style: TextStyle(fontSize: 20),
                       ),
                       onPressed: () {

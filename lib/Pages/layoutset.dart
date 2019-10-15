@@ -2,7 +2,6 @@ import 'package:flutter/material.dart'; //Attraverso questa libreria, Flutter di
 import 'dart:math'; //Libreria per funzioni matematiche
 
 class LayoutSet extends StatelessWidget {
-  
   const LayoutSet({Key key, this.text}) : super(key: key);
   final String text;
 
@@ -13,10 +12,30 @@ class LayoutSet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(
-          title: new Text(this.text),
-        ),
+    return Scaffold(
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            SliverAppBar(
+              expandedHeight: 200.0,
+              floating: false,
+              pinned: true,
+              flexibleSpace: FlexibleSpaceBar(
+                  centerTitle: true,
+                  title: Text(text,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20.0,
+                      )),
+                  background: 
+                  Image.asset(
+                  'assets/images/flower.jpeg',
+                  fit: BoxFit.fill,
+                ),
+                  ),
+            ),
+          ];
+        },
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,10 +55,6 @@ class LayoutSet extends StatelessWidget {
                             color: Colors.black,
                             offset: Offset(1, 3),
                             blurRadius: 2), */
-                          /* Shadow(
-                            color: Colors.cyan,
-                            offset: Offset(3, 1),
-                            blurRadius: 2) */
                         ]),
                   )),
               Container(
@@ -119,6 +134,8 @@ class LayoutSet extends StatelessWidget {
               ),
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
