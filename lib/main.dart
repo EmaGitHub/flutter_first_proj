@@ -1,12 +1,14 @@
 import 'package:first_proj/BLoC/counterBLoC.dart';
+import 'package:first_proj/Objects/drawer.dart';
+import 'package:first_proj/PageService/service.dart';
 import 'package:first_proj/Pages/animations-list.dart';
 import 'package:first_proj/Pages/camera.dart';
 import 'package:first_proj/Pages/flare.dart';
 import 'package:first_proj/Pages/layoutset.dart';
 import 'package:first_proj/Pages/request.dart';
 import 'package:first_proj/Pages/stackwidget.dart';
-import 'package:first_proj/Pages/homescreen.dart';
 import 'package:first_proj/Zomato/UILayer/location_screen.dart';
+import 'package:first_proj/animations/FadeIn.dart';
 import 'package:first_proj/examples/fancy_background.dart';
 import 'package:first_proj/examples/particle_background.dart';
 import 'package:flutter/cupertino.dart';
@@ -59,41 +61,7 @@ class _MyHomePageState extends State<HomePage> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        drawer: new Drawer(
-          // Add a ListView to the drawer. This ensures the user can scroll
-          // through the options in the drawer if there isn't enough vertical
-          // space to fit everything.
-          child: ListView(
-            // Important: Remove any padding from the ListView.
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              DrawerHeader(
-                padding: EdgeInsets.zero,
-                child: Container(
-                  child: FancyBackgroundApp(),
-                ),
-              ),
-              ListTile(
-                leading: new Icon(Icons.airline_seat_legroom_normal),
-                title: Text('Animations Page'),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) => AnimationsPage()));
-                },
-              ),
-              ListTile(
-                leading: new Icon(Icons.cloud_done),
-                title: Text('Stack widget Page'),
-                onTap: () {
-                  Navigator.of(context).pop();
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) => StackWidget()));
-                },
-              ),
-            ],
-          ),
-        ),
+        drawer: MyDrawer(),
         body: Stack(children: <Widget>[
           ParticleBackgroundApp(),
           SingleChildScrollView(
@@ -102,6 +70,7 @@ class _MyHomePageState extends State<HomePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
+                  FadeIn( 2, 
                   Container(
                     margin: EdgeInsets.only(top: 10),
                     child: RaisedButton(
@@ -122,7 +91,8 @@ class _MyHomePageState extends State<HomePage> {
                           side: BorderSide(color: Colors.black26, width: 4),
                           borderRadius: BorderRadius.circular(10)),
                     ),
-                  ),
+                  )),
+                  FadeIn(3, 
                   RaisedButton(
                     child: Text(
                       'Reactive Prog, stream, BLoC',
@@ -131,7 +101,7 @@ class _MyHomePageState extends State<HomePage> {
                     onPressed: () {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
+                          CupertinoPageRoute(
                               builder: (context) => RequestPage()
                               ));
                     },
@@ -139,6 +109,7 @@ class _MyHomePageState extends State<HomePage> {
                     shape: RoundedRectangleBorder(
                         side: BorderSide(color: Colors.black26, width: 4),
                         borderRadius: BorderRadius.circular(10)),
+                  )
                   ),
 
                   StreamBuilder(
@@ -166,6 +137,7 @@ class _MyHomePageState extends State<HomePage> {
                       )
                     ],
                   ),
+                  FadeIn(1,
                   RaisedButton(
                     child: Text(
                       'Zomato eating app',
@@ -182,7 +154,9 @@ class _MyHomePageState extends State<HomePage> {
                     shape: RoundedRectangleBorder(
                         side: BorderSide(color: Colors.black26, width: 4),
                         borderRadius: BorderRadius.circular(10)),
+                  )
                   ),
+                  FadeIn(2,
                   RaisedButton(
                     child: Text(
                       'Layout settings',
@@ -191,7 +165,7 @@ class _MyHomePageState extends State<HomePage> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
+                        CupertinoPageRoute(
                             builder: (context) => LayoutSet(text: 'Layout Settings')),
                       );
                     },
@@ -199,7 +173,9 @@ class _MyHomePageState extends State<HomePage> {
                     shape: RoundedRectangleBorder(
                         side: BorderSide(color: Colors.black26, width: 4),
                         borderRadius: BorderRadius.circular(10)),
+                  )
                   ),
+                  FadeIn(3,
                   Container(
                     margin: EdgeInsets.only(top: 10),
                     child: RaisedButton(
@@ -210,7 +186,7 @@ class _MyHomePageState extends State<HomePage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
+                          CupertinoPageRoute(
                               builder: (context) => StackWidget()),
                         );
                       },
@@ -220,7 +196,9 @@ class _MyHomePageState extends State<HomePage> {
                           side: BorderSide(color: Colors.black26, width: 4),
                           borderRadius: BorderRadius.circular(10)),
                     ),
+                  )
                   ),
+                  FadeIn(4,
                   Container(
                     margin: EdgeInsets.only(top: 10),
                     child: RaisedButton(
@@ -241,7 +219,9 @@ class _MyHomePageState extends State<HomePage> {
                           side: BorderSide(color: Colors.black26, width: 4),
                           borderRadius: BorderRadius.circular(10)),
                     ),
+                  )
                   ),
+                  FadeIn(1,
                   Container(
                     margin: EdgeInsets.only(top: 20),
                     child: RaisedButton(
@@ -261,28 +241,8 @@ class _MyHomePageState extends State<HomePage> {
                           side: BorderSide(color: Colors.black26, width: 4),
                           borderRadius: BorderRadius.circular(10)),
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 20),
-                    child: RaisedButton(
-                      child: Text(
-                        'Animations Examples Demo',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                              builder: (context) => Homescreen()),
-                        );
-                      },
-                      padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                      shape: RoundedRectangleBorder(
-                          side: BorderSide(color: Colors.black26, width: 4),
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
                   )
+                  ),
                 ],
               ),
             ),

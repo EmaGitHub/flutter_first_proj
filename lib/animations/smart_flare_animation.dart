@@ -25,6 +25,7 @@ class _SmartFlareAnimationState extends State<SmartFlareAnimation> {
   final FlareControls animationControls = FlareControls();
 
   AnimationToPlay _animationToPlay = AnimationToPlay.Deactivate;
+  
   // Add our lastPlayed member
   AnimationToPlay _lastPlayedAnimation;
 
@@ -47,17 +48,22 @@ class _SmartFlareAnimationState extends State<SmartFlareAnimation> {
     switch (animationToPlay) {
       case AnimationToPlay.Activate:
         return 'activate';
+        break;
       case AnimationToPlay.Deactivate:
         return 'deactivate';
+        break;
       case AnimationToPlay.CameraTapped:
         return 'camera_tapped';
+        break;
       case AnimationToPlay.PulseTapped:
         return 'pulse_tapped';
+        break;
       case AnimationToPlay.ImageTapped:
         return 'image_tapped';
         break;
       default:
         return 'deactivate';
+        break;
     }
   }
 
@@ -111,7 +117,9 @@ class _SmartFlareAnimationState extends State<SmartFlareAnimation> {
           },
           child: FlareActor('assets/animations/button-animation.flr',
               controller: animationControls,
-              animation: _getAnimationName(_animationToPlay))),
+              animation: _getAnimationName(_animationToPlay)
+              )
+              ),
     );
   }
 }
