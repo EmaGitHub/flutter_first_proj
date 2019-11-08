@@ -1,15 +1,14 @@
 import 'package:first_proj/BLoC/counterBLoC.dart';
 import 'package:first_proj/Objects/drawer.dart';
-import 'package:first_proj/PageService/service.dart';
 import 'package:first_proj/Pages/animations-list.dart';
 import 'package:first_proj/Pages/camera.dart';
 import 'package:first_proj/Pages/flare.dart';
 import 'package:first_proj/Pages/layoutset.dart';
 import 'package:first_proj/Pages/request.dart';
 import 'package:first_proj/Pages/stackwidget.dart';
+import 'package:first_proj/Pages/webview.dart';
 import 'package:first_proj/Zomato/UILayer/location_screen.dart';
 import 'package:first_proj/animations/FadeIn.dart';
-import 'package:first_proj/examples/fancy_background.dart';
 import 'package:first_proj/examples/particle_background.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -92,7 +91,7 @@ class _MyHomePageState extends State<HomePage> {
                           borderRadius: BorderRadius.circular(10)),
                     ),
                   )),
-                  FadeIn(3, 
+                  FadeIn(4, 
                   RaisedButton(
                     child: Text(
                       'Reactive Prog, stream, BLoC',
@@ -137,7 +136,7 @@ class _MyHomePageState extends State<HomePage> {
                       )
                     ],
                   ),
-                  FadeIn(1,
+                  FadeIn(5,
                   RaisedButton(
                     child: Text(
                       'Zomato eating app',
@@ -233,6 +232,28 @@ class _MyHomePageState extends State<HomePage> {
                         Navigator.push(
                           context,
                           CupertinoPageRoute(builder: (context) => FlarePage()),
+                        );
+                      },
+                      padding:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      shape: RoundedRectangleBorder(
+                          side: BorderSide(color: Colors.black26, width: 4),
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
+                  )
+                  ),
+                  FadeIn(4,
+                  Container(
+                    margin: EdgeInsets.only(top: 20),
+                    child: RaisedButton(
+                      child: Text(
+                        'WebView',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          CupertinoPageRoute(builder: (context) => WebViewPage()),
                         );
                       },
                       padding:

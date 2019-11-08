@@ -35,6 +35,8 @@ dependencies:
   flare_flutter: any
   image_picker: "^0.6.1+4"
 
+  flutter_inappbrowser: ^1.2.1
+
   rxdart: ^0.22.3
 
 dev_dependencies:
